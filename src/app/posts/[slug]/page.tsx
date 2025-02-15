@@ -11,10 +11,12 @@ import { formatTimeSince } from "@/lib/utils";
 // DEMO: static page generation
 export async function generateStaticParams() {
   const posts = await getPosts();
+  // temp: test edge cache
+  return [];
 
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
+  // return posts.map((post) => ({
+  //   slug: post.slug,
+  // }));
 }
 
 export default async function BlogPost({
