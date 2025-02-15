@@ -34,7 +34,7 @@ export default async function LatestNewsPage() {
               {posts.slice(0, 5).map((post, index) => (
                 <Link
                   key={post.id}
-                  href={`/post/${post.slug}`}
+                  href={`/posts/${post.slug}`}
                   className="block border-white/20 border-t pt-4 first:border-t-0 first:pt-0"
                 >
                   <span className="mb-2 inline-block text-sm text-white/60">
