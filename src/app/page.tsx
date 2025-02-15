@@ -1,19 +1,60 @@
-export default function Home() {
+import Link from "next/link";
+
+import Hero from "@/app/hero";
+import PostCard from "@/app/post-card";
+import { getPosts } from "@/lib/blog";
+import he from "he";
+
+export default async function BlogPage() {
+  const posts = await getPosts();
+
+  const [featuredPost, secondPost, thirdPost, ...otherPosts] = posts;
+
   return (
-    <main className="flex min-h-screen flex-col items-center p-24">
-      <h1 className="my-8 font-bold">Next.js Starter</h1>
+    <div className="min-h-screen bg-white">
+      <Hero
+        featuredPost={featuredPost}
+        secondaryPosts={[secondPost, thirdPost]}
+      />
 
-      <ul className="my-8 list-disc">
-        <li>Nextjs App Router</li>
-        <li>Typescript</li>
-        <li>Tailwind</li>
-        <li>Biome</li>
-      </ul>
+      {/* Main Content */}
+      <main className="container mx-auto px-4 py-8">
+        <div className="grid gap-6 lg:grid-cols-12">
+          {/* Sidebar */}
+          <div className="order-1 space-y-6 md:order-2 lg:col-span-4">
+            <div className="rounded-xl border bg-gray-50 p-6">
+              <h2 className="mb-4 font-bold text-tc-green text-xl">
+                Top Headlines
+              </h2>
+              <div className="space-y-4">
+                {posts.slice(0, 5).map((post) => (
+                  <Link
+                    key={post.id}
+                    href={`/posts/${post.slug}`}
+                    className="block font-medium text-sm hover:text-tc-green"
+                  >
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: he.decode(post.title.rendered),
+                      }}
+                    />
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
 
-      <p className="fixed top-0 left-0 flex w-full justify-center border-gray-300 border-b bg-gradient-to-b from-zinc-200 pt-8 pb-6 backdrop-blur-2xl lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:dark:bg-zinc-800/30">
-        Edit&nbsp;
-        <code className="font-bold font-mono">src/app/page.tsx</code>
-      </p>
-    </main>
+          {/* Articles Grid */}
+          <div className="order-2 md:order-1 lg:col-span-8">
+            <h2 className="my-2 text-tc-green">Latest Posts</h2>
+            <div className="grid gap-6 md:grid-cols-2">
+              {otherPosts.slice(0, 6).map((post) => (
+                <PostCard key={post.id} post={post} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
   );
 }

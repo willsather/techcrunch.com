@@ -2,22 +2,7 @@ import he from "he";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
-interface Post {
-  id: number;
-  title: { rendered: string };
-  content: { rendered: string };
-  slug: string;
-  jetpack_featured_media_url?: string;
-}
-
-const getPostBySlug = async (slug: string): Promise<Post | null> => {
-  const res = await fetch(
-    `https://www.techcrunch.com/wp-json/wp/v2/posts?slug=${slug}`,
-    { cache: "force-cache" },
-  );
-  const posts: Post[] = await res.json();
-  return posts.length > 0 ? posts[0] : null;
-};
+import { getPost } from "@/lib/blog";
 
 export default async function BlogPost({
   params,
@@ -25,7 +10,7 @@ export default async function BlogPost({
   params: Promise<{ slug: string }>;
 }) {
   const slug = (await params).slug;
-  const post = await getPostBySlug(slug);
+  const post = await getPost(slug);
 
   if (!post) return notFound();
 
@@ -45,8 +30,11 @@ export default async function BlogPost({
       )}
 
       {/* Blog Title */}
-      <h1 className="mb-6 font-bold text-4xl">{post.title.rendered}</h1>
+      <h1 className="mb-6 font-bold text-4xl">
+        {he.decode(post.title.rendered)}
+      </h1>
 
+      {/* Blog Content */}
       <div
         className="prose lg:prose-lg xl:prose-xl max-w-none"
         dangerouslySetInnerHTML={{
