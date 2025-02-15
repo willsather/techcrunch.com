@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import NewsletterForm from "@/app/(components)/(newsletter)/newsletter-form";
 import { FacebookIcon } from "@/icons/facebook-icon";
 import { InstagramIcon } from "@/icons/instagram-icon";
 import { LinkedInIcon } from "@/icons/linkedin-icon";
@@ -35,13 +36,13 @@ export default function Footer() {
     <footer className="bg-tc-black py-12 text-white">
       <div className="container mx-auto px-4">
         <div className="mb-12">
-          <Link href="/public" className="inline-block">
+          <Link href="/" className="inline-block">
             <TechCrunchLogo className="size-20 fill-tc-green" />
           </Link>
         </div>
 
         <div className="flex flex-col justify-between md:flex-row">
-          <div className="mb-8 flex flex-wrap gap-8">
+          <div className="mb-8 flex flex-col flex-wrap gap-8">
             {/* Social Links */}
             <div className="flex gap-6">
               <div>
@@ -58,13 +59,15 @@ export default function Footer() {
                 </div>
               </div>
             </div>
+
+            <NewsletterForm />
           </div>
 
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {/* Column 1 */}
             <div className="space-y-4">
               <Link
-                href="/public"
+                href="/"
                 className="block text-white/80 hover:text-white hover:underline"
               >
                 TechCrunch
