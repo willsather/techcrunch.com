@@ -6,7 +6,7 @@ import { SearchIcon } from "@/icons/search-icon";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const mainNavItems = [
   { label: "Latest", href: "/latest" },
@@ -17,22 +17,45 @@ const mainNavItems = [
 
 export default function Header() {
   const isHomePage = usePathname() === "/";
-  const [scrolled, setScrolled] = useState(false);
+  const [showLargeLogo, setShowLargeLogo] = useState(true);
+  const lastScrollY = useRef(0);
+  const ticking = useRef(false);
+  const lastState = useRef(true);
 
   useEffect(() => {
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 100;
-      setScrolled(isScrolled);
+      if (!ticking.current) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          const scrollDiff = Math.abs(currentScrollY - lastScrollY.current);
+
+          // Ensures slow scrolling still detects a transition smoothly
+          if (scrollDiff > 1) {
+            if (currentScrollY > 120 && showLargeLogo) {
+              setShowLargeLogo(false);
+              lastState.current = false;
+            } else if (currentScrollY < 80 && !showLargeLogo) {
+              setShowLargeLogo(true);
+              lastState.current = true;
+            }
+          }
+
+          lastScrollY.current = currentScrollY;
+          ticking.current = false;
+        });
+
+        ticking.current = true;
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [showLargeLogo]);
 
   return (
-    <header className="relative z-50">
+    <header className="sticky top-0 z-50 w-full">
       {/* Top Navigation - Always visible */}
-      <div className="sticky top-0 z-50 bg-tc-black shadow-sm">
+      <div className="bg-tc-black shadow-sm">
         <div className="container mx-auto px-4">
           <div className="flex h-14 items-center justify-between gap-4">
             {/* Left side with logo (visible when scrolled or not homepage) */}
@@ -44,10 +67,10 @@ export default function Header() {
               <Link
                 href="/"
                 className={cn(
-                  "hidden font-bold text-white text-xl transition-opacity duration-200",
-                  (scrolled || !isHomePage) &&
-                    "mr-8 md:flex md:items-center md:gap-4",
-                  !scrolled && isHomePage && "md:invisible md:opacity-0",
+                  "hidden font-bold text-white text-xl",
+                  showLargeLogo && isHomePage && "transition",
+                  (!showLargeLogo || !isHomePage) &&
+                    "mr-8 transition md:flex md:items-center md:gap-4",
                 )}
               >
                 <TechCrunchLogo className="size-8" />
@@ -87,15 +110,15 @@ export default function Header() {
       {isHomePage && (
         <div
           className={cn(
-            "relative bg-tc-green py-6 transition-all duration-300",
-            scrolled && "-mt-24 invisible opacity-0",
+            "relative bg-tc-green transition-all duration-300 md:py-6",
+            !showLargeLogo && "-mt-24 invisible opacity-0",
           )}
         >
           {/* Logo Section */}
           <div className="container mx-auto flex items-center justify-center gap-4 px-4">
             <TechCrunchLogo className="size-24 fill-white" />
 
-            <h1 className="font-bold text-6xl text-white">TechCrunch</h1>
+            <h1 className="font-bold text-white md:text-6xl">TechCrunch</h1>
           </div>
         </div>
       )}
