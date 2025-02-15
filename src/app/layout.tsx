@@ -1,9 +1,9 @@
-import Header from "@/app/header";
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
-import { Footer } from "@/app/footer";
+import Footer from "@/app/(components)/footer";
+import Header from "@/app/(components)/header";
 
 import "./globals.css";
 

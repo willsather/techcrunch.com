@@ -1,17 +1,19 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+
 import { CloseIcon } from "@/icons/close-icon";
 import { TechCrunchLogo } from "@/icons/logo";
 import { MenuIcon } from "@/icons/menu-icon";
 import { SearchIcon } from "@/icons/search-icon";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
 
 const mainNavItems = [
   { label: "Latest", href: "/latest" },
   { label: "Startups", href: "/startups" },
+  { label: "Apps", href: "/apps" },
   { label: "Venture", href: "/venture" },
   { label: "AI", href: "/ai" },
 ];
@@ -139,7 +141,7 @@ export default function Header() {
       >
         <div className="flex h-14 items-center justify-between border-white/10 border-b px-4">
           <Link
-            href="/"
+            href="/public"
             className="flex items-center gap-2"
             onClick={toggleMobileMenu}
           >

@@ -1,11 +1,11 @@
-import PostCard from "@/app/post-card";
-import { PostListItem } from "@/app/post-list-item";
+import PostCard from "@/app/(components)/post-card";
+import { PostListItem } from "@/app/(components)/post-list-item";
 import { ArrowIcon } from "@/icons/arrow-icon";
 import { getPosts } from "@/lib/blog";
 import Link from "next/link";
 
 export default async function VenturePostsSection() {
-  const posts = await getPosts();
+  const posts = await getPosts({ category: "Venture" });
 
   const [featuredPost, ...otherPosts] = posts;
 
@@ -13,8 +13,10 @@ export default async function VenturePostsSection() {
     <section className="relative bg-tc-yellow">
       <div className="container mx-auto px-4 py-12">
         {/* Section Header */}
-        <div className="mb-8 flex items-center justify-between">
-          <h1 className="font-bold text-5xl text-tc-purple md:m-0">Venture</h1>
+        <div className="mb-8 flex flex-col md:flex-row md:items-center md:gap-8">
+          <h1 className="font-extrabold text-7xl text-tc-purple md:m-0">
+            Venture
+          </h1>
           <Link
             href="/latest"
             className="inline-flex items-center gap-2 rounded-full border-2 border-tc-green fill-tc-black px-4 py-4 font-medium text-sm hover:bg-tc-black hover:fill-white hover:text-white"

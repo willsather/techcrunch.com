@@ -2,19 +2,20 @@ import PopularPosts from "@/app/(components)/popular-posts";
 import { PostListItem } from "@/app/(components)/post-list-item";
 import { getPosts } from "@/lib/blog";
 
-export default async function StartupsPage() {
-  const posts = await getPosts({ category: "Startups" });
+export default async function AppsPage() {
+  const posts = await getPosts({ category: "Apps" });
 
   return (
     <div className="container mx-auto px-4 py-8">
       <div>
         <div className="my-4 flex flex-col md:my-8 md:flex-row md:justify-between">
-          <h1 className="my-2 text-6xl text-tc-green md:text-8xl">Startups</h1>
+          <h1 className="my-2 text-6xl text-tc-green md:text-8xl">Apps</h1>
           <p className="max-w-xl">
-            Tech startup news that breaks down the funding, growth, and
-            long-term trajectory of companies across every stage and industry.
-            Startup coverage includes climate, crypto, fintech, SaaS,
-            transportation, and consumer tech.
+            The app economy continues to grow, having produced a record number
+            of downloads and consumer spending across both the iOS and Google
+            Play stores. Keep up with this fast-moving industry in one place,
+            with the latest from the world of apps, including news, updates,
+            startup fundings, mergers and acquisitions, and much more.
           </p>
         </div>
 

@@ -1,16 +1,18 @@
-import { PostListItem } from "@/app/post-list-item";
+import { PostListItem } from "@/app/(components)/post-list-item";
 import { ArrowIcon } from "@/icons/arrow-icon";
 import { getPosts } from "@/lib/blog";
 import Link from "next/link";
 
 export default async function LatestPostsSection() {
-  const popular = await getPosts();
-  const posts = await getPosts();
+  const popular = await getPosts({ category: "popular" });
+  const posts = await getPosts({ category: "latest" });
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between">
-        <h1 className="font-bold text-5xl text-tc-green md:m-0">Latest News</h1>
+      <div className="mb-8 flex flex-col md:flex-row md:items-center md:gap-8">
+        <h1 className="font-extrabold text-7xl text-tc-green md:m-0">
+          Latest News
+        </h1>
         <Link
           href="/latest"
           className="inline-flex items-center gap-2 rounded-full border-2 border-tc-green fill-tc-black px-4 py-4 font-medium text-sm hover:bg-tc-black hover:fill-white hover:text-white"

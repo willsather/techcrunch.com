@@ -1,4 +1,5 @@
 import { getPosts } from "@/lib/blog";
+import { formatTimeSince } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -8,7 +9,7 @@ export default async function Hero() {
   const [featuredPost, secondPost, thirdPost] = posts;
 
   return (
-    <div className="min-h-[75vh] bg-tc-green pb-8">
+    <div className="min-h-[70vh] bg-tc-green pb-8">
       <div className="container mx-auto px-4">
         <div className="grid gap-4 lg:grid-cols-12">
           {/* Featured Post */}
@@ -38,9 +39,7 @@ export default async function Hero() {
                     <div className="flex items-center space-x-2 text-gray-300 text-sm">
                       <span>{featuredPost.author}</span>
                       <span>•</span>
-                      <span>
-                        {new Date(featuredPost.date).toLocaleDateString()}
-                      </span>
+                      <time>{formatTimeSince(featuredPost.date)}</time>
                     </div>
                   </div>
                 </div>
@@ -79,7 +78,7 @@ export default async function Hero() {
 
                       <div className="flex items-center space-x-4 text-gray-300 text-xs">
                         <span>{post.author}</span>
-                        <span>{new Date(post.date).toLocaleDateString()}</span>
+                        <time>{formatTimeSince(post.date)}</time>
                       </div>
                     </div>
                   </div>

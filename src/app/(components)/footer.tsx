@@ -7,7 +7,7 @@ import { TechCrunchLogo } from "@/icons/logo";
 import { RSSIcon } from "@/icons/rss-icon";
 import { TwitterIcon } from "@/icons/twitter-icon";
 
-export function Footer() {
+export default function Footer() {
   const socialLinks = [
     {
       link: "https://twitter.com/techcrunch",
@@ -35,7 +35,7 @@ export function Footer() {
     <footer className="bg-tc-black py-12 text-white">
       <div className="container mx-auto px-4">
         <div className="mb-12">
-          <Link href="/" className="inline-block">
+          <Link href="/public" className="inline-block">
             <TechCrunchLogo className="size-20 fill-tc-green" />
           </Link>
         </div>
@@ -64,7 +64,7 @@ export function Footer() {
             {/* Column 1 */}
             <div className="space-y-4">
               <Link
-                href="/"
+                href="/public"
                 className="block text-white/80 hover:text-white hover:underline"
               >
                 TechCrunch
