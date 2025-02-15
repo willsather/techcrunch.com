@@ -63,8 +63,8 @@ export async function fetchPosts(options?: {
     queryParams.push("orderby=date&order=desc");
   }
 
-  // get 25 posts
-  // queryParams.push("per_page=25");
+  // get 50 posts
+  queryParams.push("per_page=50");
 
   // build query params
   if (queryParams.length > 0) {

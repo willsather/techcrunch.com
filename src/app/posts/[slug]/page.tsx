@@ -9,13 +9,13 @@ import { getPost, getPosts } from "@/lib/blog";
 import { formatTimeSince } from "@/lib/utils";
 
 // DEMO: static page generation
-// export async function generateStaticParams() {
-//   const posts = await getPosts();
-//
-//   return posts.map((post) => ({
-//     slug: post.slug,
-//   }));
-// }
+export async function generateStaticParams() {
+  const posts = await getPosts();
+
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
 
 export default async function BlogPost({
   params,
