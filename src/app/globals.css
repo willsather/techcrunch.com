@@ -26,7 +26,6 @@ p {
   @apply text-tc-black text-base md:text-lg leading-relaxed mb-4;
 }
 
-/* Add spacing consistency */
 ul,
 ol {
   @apply list-disc list-inside mb-4;
@@ -36,6 +35,16 @@ li {
   @apply mb-2;
 }
 
-blockquote {
-  @apply border-l-4 border-tc-green pl-4 italic text-gray-700 mb-6;
+.blog {
+  a {
+    @apply text-tc-green underline font-bold;
+  }
+
+  blockquote {
+    @apply border-l-4 border-tc-green pl-4 italic text-gray-700 mb-6;
+  }
+
+  figcaption {
+    @apply flex font-mono text-sm justify-between italic font-light text-gray-300 mt-1 mb-3 uppercase;
+  }
 }

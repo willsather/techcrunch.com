@@ -83,7 +83,7 @@ export default async function BlogPost({
       {/* Article Content */}
       <div className="container mx-auto max-w-4xl px-6 py-12">
         <div
-          className="prose prose-lg max-w-none prose-headings:font-bold prose-a:text-[#0A8B3C] prose-a:no-underline hover:prose-a:underline"
+          className="blog prose prose-lg max-w-none prose-headings:font-bold prose-a:text-[#0A8B3C] prose-a:no-underline hover:prose-a:underline"
           dangerouslySetInnerHTML={{
             __html: post.content,
           }}
