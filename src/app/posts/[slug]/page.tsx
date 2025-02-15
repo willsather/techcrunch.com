@@ -1,4 +1,3 @@
-import he from "he";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
@@ -17,11 +16,11 @@ export default async function BlogPost({
   return (
     <div className="container mx-auto max-w-3xl px-6 py-10">
       {/* Featured Image (if available) */}
-      {post.jetpack_featured_media_url && (
+      {post.image && (
         <div className="mb-6 w-full overflow-hidden rounded-xl">
           <Image
-            src={post.jetpack_featured_media_url}
-            alt={post.title.rendered}
+            src={post.image}
+            alt={post.title}
             width={800}
             height={450}
             className="w-full rounded-xl object-cover"
@@ -30,15 +29,13 @@ export default async function BlogPost({
       )}
 
       {/* Blog Title */}
-      <h1 className="mb-6 font-bold text-4xl">
-        {he.decode(post.title.rendered)}
-      </h1>
+      <h1 className="mb-6 font-bold text-4xl">{post.title}</h1>
 
       {/* Blog Content */}
       <div
         className="prose lg:prose-lg xl:prose-xl max-w-none"
         dangerouslySetInnerHTML={{
-          __html: he.decode(post.content.rendered),
+          __html: post.content,
         }}
       />
     </div>

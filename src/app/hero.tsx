@@ -1,8 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { type Post, getCategory } from "@/lib/blog";
-import he from "he";
+import type { Post } from "@/lib/blog";
 
 export default async function Hero({
   featuredPost,
@@ -20,8 +19,8 @@ export default async function Hero({
             >
               <div className="relative aspect-[16/10] overflow-clip">
                 <Image
-                  src={featuredPost.jetpack_featured_media_url ?? ""}
-                  alt={featuredPost.title.rendered}
+                  src={featuredPost.image ?? ""}
+                  alt={featuredPost.title}
                   fill
                   className="transition-transform duration-300 group-hover:scale-105"
                 />
@@ -30,19 +29,14 @@ export default async function Hero({
                   <div className="absolute bottom-0 p-6">
                     <div className="mb-2 inline-block bg-white px-2 py-1 font-medium text-tc-green text-xs">
                       {featuredPost.categories?.[0] != null
-                        ? (
-                            await getCategory(featuredPost.categories?.[0])
-                          )?.name.toUpperCase()
+                        ? featuredPost.categories[0].toUpperCase()
                         : "Featured"}
                     </div>
-                    <h2
-                      className="mb-2 font-bold text-2xl text-white md:text-4xl"
-                      dangerouslySetInnerHTML={{
-                        __html: he.decode(featuredPost.title.rendered),
-                      }}
-                    />
+                    <h2 className="mb-2 font-bold text-2xl text-white md:text-4xl">
+                      {featuredPost.title}
+                    </h2>
                     <div className="flex items-center space-x-4 text-gray-300 text-sm">
-                      <span>{featuredPost.author_info?.name}</span>
+                      <span>{featuredPost.author}</span>
                       <span>
                         {new Date(featuredPost.date).toLocaleDateString()}
                       </span>
@@ -55,7 +49,7 @@ export default async function Hero({
 
           {/* Secondary Posts */}
           <div className="grid gap-4 lg:col-span-4">
-            {secondaryPosts.map(async (post) => (
+            {secondaryPosts.map((post) => (
               <Link
                 key={post.id}
                 href={`/posts/${post.slug}`}
@@ -63,8 +57,8 @@ export default async function Hero({
               >
                 <div className="relative aspect-[16/9] overflow-clip">
                   <Image
-                    src={post.jetpack_featured_media_url || "/placeholder.svg"}
-                    alt={post.title.rendered}
+                    src={post.image ?? ""}
+                    alt={post.title}
                     fill
                     className="overflow-clip object-cover transition-transform duration-300 group-hover:scale-105"
                   />
@@ -73,19 +67,14 @@ export default async function Hero({
                     <div className="absolute bottom-0 p-4">
                       <div className="mb-2 inline-block bg-white px-2 py-1 font-medium text-tc-green text-xs">
                         {post.categories?.[0] != null
-                          ? (
-                              await getCategory(post.categories?.[0])
-                            )?.name.toUpperCase()
+                          ? post.categories[0].toUpperCase()
                           : "News"}
                       </div>
-                      <h3
-                        className="mb-2 font-bold text-lg text-white"
-                        dangerouslySetInnerHTML={{
-                          __html: he.decode(post.title.rendered),
-                        }}
-                      />
+                      <h3 className="mb-2 font-bold text-lg text-white">
+                        {post.title}
+                      </h3>
                       <div className="flex items-center space-x-4 text-gray-300 text-xs">
-                        <span>{post.author_info?.name}</span>
+                        <span>{post.author}</span>
                         <span>{new Date(post.date).toLocaleDateString()}</span>
                       </div>
                     </div>

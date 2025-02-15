@@ -3,7 +3,6 @@ import Link from "next/link";
 import { PostListItem } from "@/app/post-list-item";
 import { TrendUpIcon } from "@/icons/trend-up-icon";
 import { getPosts } from "@/lib/blog";
-import he from "he";
 
 export default async function AIPage() {
   const posts = await getPosts();
@@ -49,7 +48,7 @@ export default async function AIPage() {
                   <h4
                     className="font-medium leading-snug hover:text-tc-yellow"
                     dangerouslySetInnerHTML={{
-                      __html: he.decode(post.title.rendered),
+                      __html: post.title,
                     }}
                   />
                 </Link>

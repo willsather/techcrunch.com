@@ -12,12 +12,7 @@ const mainNavItems = [
   { label: "Latest", href: "/" },
   { label: "Startups", href: "/startups" },
   { label: "Venture", href: "/venture" },
-  { label: "Security", href: "/security" },
   { label: "AI", href: "/ai" },
-  { label: "Apps", href: "/apps" },
-  { label: "Events", href: "/events" },
-  { label: "Podcasts", href: "/podcasts" },
-  { label: "Newsletters", href: "/newsletters" },
 ];
 
 export default function Header() {
@@ -37,23 +32,25 @@ export default function Header() {
   return (
     <header className="relative z-50">
       {/* Top Navigation - Always visible */}
-      <div className="sticky top-0 z-50 bg-[#1D1D1D] shadow-sm">
+      <div className="sticky top-0 z-50 bg-tc-black shadow-sm">
         <div className="container mx-auto px-4">
           <div className="flex h-14 items-center justify-between gap-4">
             {/* Left side with logo (visible when scrolled or not homepage) */}
             <div className="flex items-center gap-6">
               <button type="button" className="text-white md:hidden">
-                <MenuIcon className="h-5 w-5" />
+                <MenuIcon className="size-5" />
               </button>
 
               <Link
                 href="/"
                 className={cn(
                   "hidden font-bold text-white text-xl transition-opacity duration-200",
-                  (scrolled || !isHomePage) && "md:block",
+                  (scrolled || !isHomePage) &&
+                    "mr-8 md:flex md:items-center md:gap-4",
                   !scrolled && isHomePage && "md:invisible md:opacity-0",
                 )}
               >
+                <TechCrunchLogo className="size-8" />
                 TechCrunch
               </Link>
 
@@ -62,7 +59,7 @@ export default function Header() {
                   <Link
                     key={item.label}
                     href={item.href}
-                    className="text-gray-300 text-sm transition-colors hover:text-[#0A8B3C]"
+                    className="font-bold text-gray-300 transition-colors hover:text-tc-green"
                   >
                     {item.label}
                   </Link>
@@ -89,15 +86,15 @@ export default function Header() {
       {isHomePage && (
         <div
           className={cn(
-            "relative bg-[#0A8B3C] py-6 transition-all duration-300",
+            "relative bg-tc-green py-6 transition-all duration-300",
             scrolled && "-mt-24 invisible opacity-0",
           )}
         >
           {/* Logo Section */}
           <div className="container mx-auto flex items-center justify-center gap-4 px-4">
-            <TechCrunchLogo className="size-12 fill-white" />
+            <TechCrunchLogo className="size-24 fill-white" />
 
-            <h1 className="font-bold text-4xl text-white">TechCrunch</h1>
+            <h1 className="font-bold text-6xl text-white">TechCrunch</h1>
           </div>
         </div>
       )}

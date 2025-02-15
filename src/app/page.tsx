@@ -3,7 +3,6 @@ import Link from "next/link";
 import Hero from "@/app/hero";
 import PostCard from "@/app/post-card";
 import { getPosts } from "@/lib/blog";
-import he from "he";
 
 export default async function BlogPage() {
   const posts = await getPosts();
@@ -33,11 +32,7 @@ export default async function BlogPage() {
                     href={`/posts/${post.slug}`}
                     className="block font-medium text-sm hover:text-tc-green"
                   >
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: he.decode(post.title.rendered),
-                      }}
-                    />
+                    <div>{post.title}</div>
                   </Link>
                 ))}
               </div>
