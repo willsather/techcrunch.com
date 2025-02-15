@@ -1,12 +1,13 @@
 "use client";
 
+import { CloseIcon } from "@/icons/close-icon";
 import { TechCrunchLogo } from "@/icons/logo";
 import { MenuIcon } from "@/icons/menu-icon";
 import { SearchIcon } from "@/icons/search-icon";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 const mainNavItems = [
   { label: "Latest", href: "/latest" },
@@ -16,41 +17,41 @@ const mainNavItems = [
 ];
 
 export default function Header() {
-  const isHomePage = usePathname() === "/";
-  const [showLargeLogo, setShowLargeLogo] = useState(true);
-  const lastScrollY = useRef(0);
-  const ticking = useRef(false);
-  const lastState = useRef(true);
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
+
+  const [showLogo, setShowLogo] = useState(true);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!ticking.current) {
-        window.requestAnimationFrame(() => {
-          const currentScrollY = window.scrollY;
-          const scrollDiff = Math.abs(currentScrollY - lastScrollY.current);
-
-          // Ensures slow scrolling still detects a transition smoothly
-          if (scrollDiff > 1) {
-            if (currentScrollY > 120 && showLargeLogo) {
-              setShowLargeLogo(false);
-              lastState.current = false;
-            } else if (currentScrollY < 80 && !showLargeLogo) {
-              setShowLargeLogo(true);
-              lastState.current = true;
-            }
-          }
-
-          lastScrollY.current = currentScrollY;
-          ticking.current = false;
-        });
-
-        ticking.current = true;
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > 100 && showLogo) {
+        setShowLogo(false);
+      } else if (currentScrollY <= 100 && !showLogo) {
+        setShowLogo(true);
       }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [showLargeLogo]);
+  }, [showLogo]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isMobileMenuOpen]);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen((prev) => !prev);
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full">
@@ -60,23 +61,29 @@ export default function Header() {
           <div className="flex h-14 items-center justify-between gap-4">
             {/* Left side with logo (visible when scrolled or not homepage) */}
             <div className="flex items-center gap-6">
-              <button type="button" className="text-white md:hidden">
+              <button
+                type="button"
+                className="text-white md:hidden"
+                onClick={toggleMobileMenu}
+                aria-label="Toggle menu"
+              >
                 <MenuIcon className="size-5" />
               </button>
 
               <Link
                 href="/"
                 className={cn(
-                  "hidden font-bold text-white text-xl",
-                  showLargeLogo && isHomePage && "transition",
-                  (!showLargeLogo || !isHomePage) &&
-                    "mr-8 transition md:flex md:items-center md:gap-4",
+                  "hidden font-bold text-white text-xl transition-opacity duration-200",
+                  showLogo && isHomePage && "opacity-0",
+                  (!showLogo || !isHomePage) &&
+                    "mr-8 opacity-100 md:flex md:items-center md:gap-4",
                 )}
               >
                 <TechCrunchLogo className="size-8" />
                 TechCrunch
               </Link>
 
+              {/* Desktop Navigation Links */}
               <nav className="hidden items-center space-x-6 md:flex">
                 {mainNavItems.map((item) => (
                   <Link
@@ -92,7 +99,11 @@ export default function Header() {
 
             {/* Right side */}
             <div className="flex items-center space-x-4">
-              <button type="button" className="text-gray-300 hover:text-white">
+              <button
+                type="button"
+                className="text-gray-300 hover:text-white"
+                aria-label="Search"
+              >
                 <SearchIcon className="size-4" />
               </button>
 
@@ -107,21 +118,68 @@ export default function Header() {
         </div>
       </div>
 
-      {isHomePage && (
-        <div
-          className={cn(
-            "relative bg-tc-green transition-all duration-300 md:py-6",
-            !showLargeLogo && "-mt-24 invisible opacity-0",
-          )}
-        >
-          {/* Logo Section */}
-          <div className="container mx-auto flex items-center justify-center gap-4 px-4">
-            <TechCrunchLogo className="size-24 fill-white" />
+      {/* Mobile Menu Overlay */}
+      <div
+        className={cn(
+          "fixed inset-0 z-40 bg-black/50 backdrop-blur-sm transition-opacity duration-300 md:hidden",
+          isMobileMenuOpen ? "opacity-100" : "pointer-events-none opacity-0",
+        )}
+        onClick={toggleMobileMenu}
+        onKeyDown={toggleMobileMenu}
+        onKeyUp={toggleMobileMenu}
+        aria-hidden="true"
+      />
 
-            <h1 className="m-0 font-bold text-white md:text-6xl">TechCrunch</h1>
-          </div>
+      {/* Mobile Menu Panel */}
+      <div
+        className={cn(
+          "fixed inset-y-0 left-0 z-50 w-[300px] transform bg-tc-black transition-transform duration-300 ease-in-out md:hidden",
+          isMobileMenuOpen ? "translate-x-0" : "-translate-x-full",
+        )}
+      >
+        <div className="flex h-14 items-center justify-between border-white/10 border-b px-4">
+          <Link
+            href="/"
+            className="flex items-center gap-2"
+            onClick={toggleMobileMenu}
+          >
+            <TechCrunchLogo className="size-8 fill-white" />
+          </Link>
+          <button
+            type="button"
+            onClick={toggleMobileMenu}
+            className="rounded-full p-2 text-white transition-colors hover:bg-white/10"
+            aria-label="Close menu"
+          >
+            <CloseIcon className="size-5" />
+          </button>
         </div>
-      )}
+
+        <nav className="p-4">
+          <div className="space-y-1">
+            {mainNavItems.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="block rounded-lg px-4 py-2 font-bold text-gray-300 text-lg transition-colors hover:bg-white/10 hover:text-white"
+                onClick={toggleMobileMenu}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+
+          <div className="mt-8 border-white/10 border-t pt-4">
+            <Link
+              href="/profile"
+              className="block rounded-lg px-4 py-2 font-bold text-gray-300 text-lg transition-colors hover:bg-white/10 hover:text-white"
+              onClick={toggleMobileMenu}
+            >
+              Sign In
+            </Link>
+          </div>
+        </nav>
+      </div>
     </header>
   );
 }

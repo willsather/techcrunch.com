@@ -1,5 +1,6 @@
 import PostCard from "@/app/post-card";
 import { PostListItem } from "@/app/post-list-item";
+import { ArrowIcon } from "@/icons/arrow-icon";
 import { getPosts } from "@/lib/blog";
 import Link from "next/link";
 
@@ -13,12 +14,13 @@ export default async function VenturePostsSection() {
       <div className="container mx-auto px-4 py-12">
         {/* Section Header */}
         <div className="mb-8 flex items-center justify-between">
-          <h1 className="font-bold text-5xl text-tc-purple">Venture</h1>
+          <h1 className="font-bold text-5xl text-tc-purple md:m-0">Venture</h1>
           <Link
-            href="/venture"
-            className="inline-flex items-center gap-2 rounded-full border border-black/10 px-4 py-2 font-medium text-sm hover:bg-black/5"
+            href="/latest"
+            className="inline-flex items-center gap-2 rounded-full border-2 border-tc-green fill-tc-black px-4 py-4 font-medium text-sm hover:bg-tc-black hover:fill-white hover:text-white"
           >
             See More
+            <ArrowIcon className="size-4 rotate-45" />
           </Link>
         </div>
 

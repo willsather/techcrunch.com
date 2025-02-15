@@ -1,4 +1,3 @@
-import PostCard from "@/app/post-card";
 import { getPosts } from "@/lib/blog";
 import Image from "next/image";
 import Link from "next/link";
