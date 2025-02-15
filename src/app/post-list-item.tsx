@@ -13,7 +13,7 @@ export function PostListItem({ post }: { post: Post }) {
     <article className="group flex gap-6 py-6 first:pt-0">
       {/* Thumbnail */}
       <Link
-        href={`/post/${post.slug}`}
+        href={`/posts/${post.slug}`}
         className="relative block h-[154px] w-[154px] shrink-0 overflow-hidden bg-gray-100"
       >
         <img
@@ -25,7 +25,7 @@ export function PostListItem({ post }: { post: Post }) {
 
       {/* Content */}
       <div className="flex flex-col">
-        <Link href={`/post/${post.slug}`}>
+        <Link href={`/posts/${post.slug}`}>
           <h2 className="mb-2 font-bold text-[22px] leading-tight tracking-tight hover:text-tc-green">
             {post.title}
           </h2>

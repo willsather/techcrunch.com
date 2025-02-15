@@ -9,7 +9,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const mainNavItems = [
-  { label: "Latest", href: "/" },
+  { label: "Latest", href: "/latest" },
   { label: "Startups", href: "/startups" },
   { label: "Venture", href: "/venture" },
   { label: "AI", href: "/ai" },

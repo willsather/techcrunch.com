@@ -5,8 +5,16 @@ import { notFound } from "next/navigation";
 import { FacebookIcon } from "@/icons/facebook-icon";
 import { LinkedInIcon } from "@/icons/linkedin-icon";
 import { TwitterIcon } from "@/icons/twitter-icon";
-import { getPost } from "@/lib/blog";
+import { getPost, getPosts } from "@/lib/blog";
 import { formatTimeSince } from "@/lib/utils";
+
+export async function generateStaticParams() {
+  const posts = await getPosts();
+
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
 
 export default async function BlogPost({
   params,
