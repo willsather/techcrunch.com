@@ -27,7 +27,7 @@ export default async function AIPage() {
       <div className="grid gap-8 lg:grid-cols-12">
         {/* Sidebar */}
         <div className="order-1 md:order-2 lg:col-span-4">
-          <div className="rounded-xl bg-tc-purple p-6 text-white">
+          <div className="bg-tc-purple p-6 text-white">
             <div className="mb-6 flex items-center justify-between">
               <h2 className="font-bold text-3xl">Most Popular</h2>
               <div className="rounded bg-tc-yellow p-6">

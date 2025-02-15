@@ -1,7 +1,12 @@
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { FacebookIcon } from "@/icons/facebook-icon";
+import { LinkedInIcon } from "@/icons/linkedin-icon";
+import { TwitterIcon } from "@/icons/twitter-icon";
 import { getPost } from "@/lib/blog";
+import { formatTimeSince } from "@/lib/utils";
 
 export default async function BlogPost({
   params,
@@ -14,30 +19,67 @@ export default async function BlogPost({
   if (!post) return notFound();
 
   return (
-    <div className="container mx-auto max-w-3xl px-6 py-10">
-      {/* Featured Image (if available) */}
-      {post.image && (
-        <div className="mb-6 w-full overflow-hidden rounded-xl">
-          <Image
-            src={post.image}
-            alt={post.title}
-            width={800}
-            height={450}
-            className="w-full rounded-xl object-cover"
-          />
+    <article>
+      {/* Hero Section */}
+      <div className="relative min-h-[60vh] bg-[#0A8B3C]">
+        <div className="grid lg:grid-cols-2">
+          {/* Featured Image */}
+          <div className="relative h-[60vh] w-full">
+            {post.image ? (
+              <Image
+                src={post.image || "/placeholder.svg"}
+                alt={post.title}
+                fill
+                className="object-cover"
+                priority
+              />
+            ) : (
+              <div className="h-full w-full bg-gray-200" />
+            )}
+          </div>
+
+          {/* Content Overlay */}
+          <div className="flex flex-col justify-center p-6 text-white lg:p-12">
+            <div className="mb-4 font-medium text-sm uppercase tracking-wider">
+              {post.categories?.[0] ?? "News"}
+            </div>
+            <h1 className="mb-6 font-bold text-3xl leading-tight md:text-4xl lg:text-5xl">
+              {post.title}
+            </h1>
+            <div className="mb-6 space-y-2">
+              <Link href="#" className="block text-lg hover:text-white/80">
+                {post.author}
+              </Link>
+              <time className="block text-white/80">
+                {formatTimeSince(post.date)}
+              </time>
+            </div>
+
+            {/* Social Share Buttons */}
+            <div className="flex space-x-6">
+              <button type="submit">
+                <FacebookIcon className="size-5" />
+              </button>
+              <button type="submit">
+                <TwitterIcon className="size-5" />
+              </button>
+              <button type="submit">
+                <LinkedInIcon className="size-5" />
+              </button>
+            </div>
+          </div>
         </div>
-      )}
+      </div>
 
-      {/* Blog Title */}
-      <h1 className="mb-6 font-bold text-4xl">{post.title}</h1>
-
-      {/* Blog Content */}
-      <div
-        className="prose lg:prose-lg xl:prose-xl max-w-none"
-        dangerouslySetInnerHTML={{
-          __html: post.content,
-        }}
-      />
-    </div>
+      {/* Article Content */}
+      <div className="container mx-auto max-w-4xl px-6 py-12">
+        <div
+          className="prose prose-lg max-w-none prose-headings:font-bold prose-a:text-[#0A8B3C] prose-a:no-underline hover:prose-a:underline"
+          dangerouslySetInnerHTML={{
+            __html: post.content,
+          }}
+        />
+      </div>
+    </article>
   );
 }
