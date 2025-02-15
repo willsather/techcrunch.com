@@ -26,7 +26,7 @@ export default function Footer() {
       icon: <InstagramIcon className="size-6" />,
     },
     {
-      link: "/rss.xml",
+      link: "/feed",
       icon: <RSSIcon className="size-6" />,
     },
   ];

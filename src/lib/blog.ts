@@ -1,6 +1,11 @@
 import { z } from "zod";
 
-import { fetchCategory, fetchPost, fetchPosts } from "@/lib/wordpress";
+import {
+  fetchCategory,
+  fetchPost,
+  fetchPosts,
+  fetchRSSFeed,
+} from "@/lib/wordpress";
 
 export const PostSchema = z.object({
   id: z.number(),
@@ -48,4 +53,8 @@ export async function getPost(slug: string): Promise<Post | null> {
 
 export async function getCategory(id: number): Promise<string | null> {
   return fetchCategory(id);
+}
+
+export async function getRSSFeed(): Promise<string> {
+  return fetchRSSFeed();
 }

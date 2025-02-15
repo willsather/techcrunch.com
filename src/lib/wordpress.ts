@@ -161,3 +161,9 @@ async function getCategoryId(category: string): Promise<number | null> {
 
   return wpCategories.find((c) => c.name === category)?.id ?? null;
 }
+
+export async function fetchRSSFeed(): Promise<string> {
+  const response = await fetch(`${BASE_URL}/feed/`);
+
+  return response.text();
+}
