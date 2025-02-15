@@ -1,4 +1,12 @@
 import RevalidateButton from "@/app/profile/revalidate-button";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Profile",
+  openGraph: {
+    title: "Profile",
+  },
+};
 
 export default function ProfilePage() {
   return (

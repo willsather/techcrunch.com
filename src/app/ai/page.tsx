@@ -1,6 +1,18 @@
 import PopularPosts from "@/app/(components)/popular-posts";
 import { PostListItem } from "@/app/(components)/post-list-item";
 import { getPosts } from "@/lib/blog";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "AI",
+  description:
+    "Read the latest on artificial intelligence and machine learning tech, the companies that are building them, and the ethical issues AI raises today.",
+  openGraph: {
+    title: "AI",
+    description:
+      "Read the latest on artificial intelligence and machine learning tech, the companies that are building them, and the ethical issues AI raises today.",
+  },
+};
 
 export default async function AIPage() {
   const posts = await getPosts({ category: "AI" });

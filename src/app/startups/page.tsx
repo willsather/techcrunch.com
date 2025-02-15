@@ -1,6 +1,18 @@
 import PopularPosts from "@/app/(components)/popular-posts";
 import { PostListItem } from "@/app/(components)/post-list-item";
 import { getPosts } from "@/lib/blog";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Startups",
+  description:
+    "Read more about tech startup news that breaks down funding, growth, and long-term trajectory of companies across every stage and industry.",
+  openGraph: {
+    title: "Startups",
+    description:
+      "Read more about tech startup news that breaks down funding, growth, and long-term trajectory of companies across every stage and industry.",
+  },
+};
 
 export default async function StartupsPage() {
   const posts = await getPosts({ category: "Startups" });

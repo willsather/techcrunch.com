@@ -1,6 +1,18 @@
 import PopularPosts from "@/app/(components)/popular-posts";
 import { PostListItem } from "@/app/(components)/post-list-item";
 import { getPosts } from "@/lib/blog";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Venture",
+  description:
+    "Venture capital news and coverage feature all the VCs, VC-backed startups, and investment trends that founders, investors, and students should be tracking.",
+  openGraph: {
+    title: "Venture",
+    description:
+      "Venture capital news and coverage feature all the VCs, VC-backed startups, and investment trends that founders, investors, and students should be tracking.",
+  },
+};
 
 export default async function VenturePage() {
   const posts = await getPosts({ category: "Venture" });

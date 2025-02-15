@@ -1,6 +1,14 @@
 import PopularPosts from "@/app/(components)/popular-posts";
 import { PostListItem } from "@/app/(components)/post-list-item";
 import { getPosts } from "@/lib/blog";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Latest News",
+  openGraph: {
+    title: "Latest News",
+  },
+};
 
 export default async function LatestNewsPage() {
   const posts = await getPosts({ category: "latest" });

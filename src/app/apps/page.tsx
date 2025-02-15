@@ -1,6 +1,18 @@
 import PopularPosts from "@/app/(components)/popular-posts";
 import { PostListItem } from "@/app/(components)/post-list-item";
 import { getPosts } from "@/lib/blog";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Apps",
+  description:
+    "As the app economy continues to grow, both on iOS and Google Play stores, TechCrunch covers the latest app news and updates across both digital storefronts.",
+  openGraph: {
+    title: "Apps",
+    description:
+      "As the app economy continues to grow, both on iOS and Google Play stores, TechCrunch covers the latest app news and updates across both digital storefronts.",
+  },
+};
 
 export default async function AppsPage() {
   const posts = await getPosts({ category: "Apps" });
