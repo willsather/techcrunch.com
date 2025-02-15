@@ -9,9 +9,48 @@ import Header from "@/app/(components)/header";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "TechCrunch",
+  title: {
+    template: "TechCrunch | %s",
+    default: "TechCrunch",
+  },
   description:
     "TechCrunch | Reporting on the business of technology, startups, venture capital funding, and Silicon Valley",
+  applicationName: "TechCrunch",
+  icons: {
+    icon: [
+      {
+        url: "/favicon.ico",
+        sizes: "16x16 32x32 64x64",
+      },
+      {
+        url: "/favicons/favicon-16.png",
+        sizes: "16x16",
+      },
+      {
+        url: "/favicons/favicon-32.png",
+        sizes: "32x32",
+      },
+      {
+        url: "/favicons/android-chrome-192x192.png",
+        sizes: "192x192",
+      },
+      {
+        url: "/favicons/android-chrome-512x512.png",
+        sizes: "512x512",
+      },
+    ],
+    apple: [
+      {
+        url: "/favicons/apple-touch-icon.png",
+        sizes: "180x180",
+      },
+    ],
+    shortcut: [
+      {
+        url: "/favicon.ico",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
