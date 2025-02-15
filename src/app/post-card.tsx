@@ -25,8 +25,9 @@ export default async function PostCard({ post }: { post: Post }) {
 
             <h3 className="mb-2 font-bold text-lg text-white">{post.title}</h3>
 
-            <div className="flex items-center space-x-4 text-gray-300 text-xs">
+            <div className="flex items-center space-x-2 text-gray-300 text-xs">
               <span>{post.author}</span>
+              <span>•</span>
               <time>{formatTimeSince(post.date)}</time>
             </div>
           </div>

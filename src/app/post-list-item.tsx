@@ -4,11 +4,6 @@ import type { Post } from "@/lib/blog";
 import { formatTimeSince } from "@/lib/utils";
 
 export function PostListItem({ post }: { post: Post }) {
-  const timeAgo = new Date(post.date).toLocaleDateString("en-US", {
-    hour: "numeric",
-    minute: "numeric",
-  });
-
   return (
     <article className="group flex gap-6 py-6 first:pt-0">
       {/* Thumbnail */}
@@ -18,7 +13,7 @@ export function PostListItem({ post }: { post: Post }) {
       >
         <img
           src={post.image ?? "/default.png"}
-          alt=""
+          alt={post.image}
           className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
       </Link>
@@ -26,14 +21,17 @@ export function PostListItem({ post }: { post: Post }) {
       {/* Content */}
       <div className="flex flex-col">
         <Link href={`/posts/${post.slug}`}>
-          <h2 className="mb-2 font-bold text-[22px] leading-tight tracking-tight hover:text-tc-green">
+          <div className="mb-2 inline-block font-medium text-tc-green text-xs">
+            {post.categories?.[0]?.toUpperCase()}
+          </div>
+          <h2 className="mb-2 font-bold text-[22px] leading-tight tracking-tight hover:underline">
             {post.title}
           </h2>
         </Link>
 
-        <div className="mt-auto flex items-center gap-2 text-[15px] text-gray-500">
-          <span className="font-medium">{post.author}</span>
-          <span>•</span>
+        <div className="mt-auto flex flex-col items-start gap-2 font-medium text-gray-500 text-sm md:flex-row md:items-center">
+          <span>{post.author}</span>
+          <span className="hidden md:block">-</span>
           <time>{formatTimeSince(post.date)}</time>
         </div>
       </div>

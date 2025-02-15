@@ -118,7 +118,7 @@ export default function Header() {
           <div className="container mx-auto flex items-center justify-center gap-4 px-4">
             <TechCrunchLogo className="size-24 fill-white" />
 
-            <h1 className="font-bold text-white md:text-6xl">TechCrunch</h1>
+            <h1 className="m-0 font-bold text-white md:text-6xl">TechCrunch</h1>
           </div>
         </div>
       )}
