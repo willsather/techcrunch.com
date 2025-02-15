@@ -51,7 +51,10 @@ export type Post = z.infer<typeof PostSchema>;
 const BASE_URL = "https://www.techcrunch.com";
 
 export async function getPosts(): Promise<Post[]> {
-  const response = await fetch(`${BASE_URL}/wp-json/wp/v2/posts`);
+  const response = await fetch(`${BASE_URL}/wp-json/wp/v2/posts`, {
+    cache: "force-cache",
+    next: { tags: ["posts"] },
+  });
 
   if (!response.ok) {
     throw new Error("Failed to fetch posts");
@@ -81,7 +84,10 @@ export async function getPosts(): Promise<Post[]> {
 }
 
 export async function getPost(slug: string): Promise<Post | null> {
-  const response = await fetch(`${BASE_URL}/wp-json/wp/v2/posts?slug=${slug}`);
+  const response = await fetch(`${BASE_URL}/wp-json/wp/v2/posts?slug=${slug}`, {
+    cache: "force-cache",
+    next: { tags: ["posts"] },
+  });
 
   if (!response.ok) {
     throw new Error("Failed to fetch posts");

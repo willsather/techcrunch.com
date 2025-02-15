@@ -70,14 +70,15 @@ export default function Header() {
             {/* Right side */}
             <div className="flex items-center space-x-4">
               <button type="button" className="text-gray-300 hover:text-white">
-                <SearchIcon className="h-4 w-4" />
+                <SearchIcon className="size-4" />
               </button>
-              <button
-                type="button"
+
+              <a
+                href="/profile"
                 className="hidden text-gray-300 text-sm hover:text-white md:inline-flex"
               >
                 Sign In
-              </button>
+              </a>
             </div>
           </div>
         </div>
