@@ -35,7 +35,7 @@ export default async function BlogPost({
           <div className="relative h-[60vh] w-full">
             {post.image ? (
               <Image
-                src={post.image || "/placeholder.svg"}
+                src={post.image ?? "/default.png"}
                 alt={post.title}
                 fill
                 className="object-cover"

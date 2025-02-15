@@ -9,7 +9,7 @@ export default async function PostCard({ post }: { post: Post }) {
     <Link href={`/posts/${post.slug}`} className="group block">
       <div className="relative aspect-[16/9] overflow-clip bg-black">
         <Image
-          src={post.image ?? "/placeholder.svg"}
+          src={post.image ?? "/default.png"}
           alt={post.title}
           fill
           className="object-cover transition-transform duration-300 group-hover:scale-105"

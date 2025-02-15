@@ -59,7 +59,7 @@ export default async function StartupsPage() {
         {/* Main Content */}
         <div className="order-2 md:order-1 lg:col-span-8">
           {/* Articles List */}
-          <div className="divide-y divide-gray-100">
+          <div>
             {posts.map((post) => (
               <PostListItem key={post.id} post={post} />
             ))}
