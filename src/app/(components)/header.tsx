@@ -63,14 +63,7 @@ export default function Header() {
           <div className="flex h-14 items-center justify-between gap-4">
             {/* Left side with logo (visible when scrolled or not homepage) */}
             <div className="flex items-center gap-6">
-              <button
-                type="button"
-                className="text-white md:hidden"
-                onClick={toggleMobileMenu}
-                aria-label="Toggle menu"
-              >
-                <MenuIcon className="size-5" />
-              </button>
+              <TechCrunchLogo className="size-8 fill-white md:hidden" />
 
               <Link
                 href="/"
@@ -101,12 +94,22 @@ export default function Header() {
 
             {/* Right side */}
             <div className="flex items-center space-x-4">
+              {/*TODO: Add Search?*/}
+              {/*<button*/}
+              {/*  type="button"*/}
+              {/*  className="text-gray-300 hover:text-white"*/}
+              {/*  aria-label="Search"*/}
+              {/*>*/}
+              {/*  <SearchIcon className="size-4" />*/}
+              {/*</button>*/}
+
               <button
                 type="button"
-                className="text-gray-300 hover:text-white"
-                aria-label="Search"
+                className="text-white md:hidden"
+                onClick={toggleMobileMenu}
+                aria-label="Toggle menu"
               >
-                <SearchIcon className="size-4" />
+                <MenuIcon className="size-5" />
               </button>
 
               <a
