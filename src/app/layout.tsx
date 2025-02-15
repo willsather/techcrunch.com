@@ -8,6 +8,16 @@ import Header from "@/app/(components)/header";
 
 import "./globals.css";
 
+/*
+ * DEMO: Metadata
+ *
+ * Easily construct site/page metadata using Next.js
+ * exported objects.
+ *
+ * These exported objects generates the necessary `meta`
+ * head elements, easily specifying OpenGraph properties, and
+ * even create templates for the entire site.
+ */
 export const metadata: Metadata = {
   title: {
     template: "TechCrunch | %s",
@@ -64,6 +74,8 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+
+        {/*DEMO: Vercel Analytics/Speed Insights SDK Packages for reporting*/}
         <Analytics />
         <SpeedInsights />
       </body>

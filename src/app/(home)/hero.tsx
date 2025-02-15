@@ -1,8 +1,16 @@
-import { getPosts } from "@/lib/blog";
-import { formatTimeSince } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 
+import { getPosts } from "@/lib/blog";
+import { formatTimeSince } from "@/lib/utils";
+
+/*
+ * DEMO: Images
+ *
+ * Next.js `<Image />` automatically optimizes images
+ * allowing for a faster, more compatible `<img />`
+ * element.
+ */
 export default async function Hero() {
   const posts = await getPosts();
 

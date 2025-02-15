@@ -8,15 +8,19 @@ import { TwitterIcon } from "@/icons/twitter-icon";
 import { getPost, getPosts } from "@/lib/blog";
 import { formatTimeSince } from "@/lib/utils";
 
-// DEMO: static page generation
+/*
+ * DEMO: Static Site Generation (SSG)
+ *
+ * At build time, generate the top 25 most recent
+ * blog posts, allowing `dynamicParams` to dynamically
+ * generate the other posts at first request time.
+ */
 export async function generateStaticParams() {
   const posts = await getPosts();
-  // temp: test edge cache
-  return [];
 
-  // return posts.map((post) => ({
-  //   slug: post.slug,
-  // }));
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
 }
 
 export default async function BlogPost({

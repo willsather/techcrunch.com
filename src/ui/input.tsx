@@ -2,6 +2,12 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
+/*
+ * DEMO: V0.dev
+ *
+ * Automatically generate full page scaffolding and UI components
+ * utilizing shadcn/ui, tailwind, and other common ecosystem libraries.
+ */
 const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
   ({ className, type, ...props }, ref) => {
     return (
