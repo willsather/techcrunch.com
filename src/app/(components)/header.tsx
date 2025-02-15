@@ -141,7 +141,7 @@ export default function Header() {
       >
         <div className="flex h-14 items-center justify-between border-white/10 border-b px-4">
           <Link
-            href="/public"
+            href="/"
             className="flex items-center gap-2"
             onClick={toggleMobileMenu}
           >
