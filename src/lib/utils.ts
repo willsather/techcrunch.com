@@ -8,24 +8,18 @@ export function cn(...inputs: ClassValue[]): string {
 export function formatTimeSince(date: Date): string {
   const totalSeconds = Math.floor((Date.now() - date.getTime()) / 1000) - 10800; // timezone offset
 
-  if (totalSeconds < 0) {
-    return "0 seconds ago";
-  }
-
   if (totalSeconds < 60) {
-    return `${totalSeconds} seconds ago`;
+    return totalSeconds <= 1 ? "1 second ago" : `${totalSeconds} seconds ago`;
   }
 
   const totalMinutes = Math.floor(totalSeconds / 60);
-
   if (totalMinutes < 60) {
-    return `${totalMinutes} minutes ago`;
+    return totalMinutes === 1 ? "1 minute ago" : `${totalMinutes} minutes ago`;
   }
 
   const totalHours = Math.floor(totalMinutes / 60);
-
   if (totalHours < 24) {
-    return `${totalHours} hours ago`;
+    return totalHours === 1 ? "1 hour ago" : `${totalHours} hours ago`;
   }
 
   const totalDays = Math.floor(totalHours / 24);
