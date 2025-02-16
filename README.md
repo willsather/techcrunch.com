@@ -38,9 +38,9 @@ performance and rendering strategies.
     
 #### Vercel Differentiators
 
-* Git Integration (Automated Deployments, PR Preview)
 * Efficient Rendering (Caching, ISR)
 * Observability Rendering (Analytics, Speed Insights, Logs)
+* Git Integration (Automated Deployments, PR Preview)
 * Security (Firewall, DDoS Insights, Challenge Mode)
 * Automated Rollback (Cache, Skew Protection)
 
