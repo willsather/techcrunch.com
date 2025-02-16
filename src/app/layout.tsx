@@ -1,5 +1,6 @@
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { VercelToolbar } from "@vercel/toolbar/next";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
@@ -78,6 +79,8 @@ export default function RootLayout({
         {/*DEMO: Vercel Analytics/Speed Insights SDK Packages for reporting*/}
         <Analytics />
         <SpeedInsights />
+
+        {process.env.NODE_ENV === "development" && <VercelToolbar />}
       </body>
     </html>
   );
