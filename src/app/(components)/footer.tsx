@@ -143,52 +143,6 @@ export default function Footer() {
                 About Our Ads
               </Link>
             </div>
-
-            {/* Column 3 */}
-            {/*<div className="space-y-4">*/}
-            {/*  <Link*/}
-            {/*    href="/tiktok-returns-to-app-store"*/}
-            {/*    className="block text-white/80 hover:text-white hover:underline"*/}
-            {/*  >*/}
-            {/*    TikTok Returns To App Store*/}
-            {/*  </Link>*/}
-            {/*  <Link*/}
-            {/*    href="/elon-musk-openai-bid"*/}
-            {/*    className="block text-white/80 hover:text-white hover:underline"*/}
-            {/*  >*/}
-            {/*    Elon Musk's OpenAI Bid*/}
-            {/*  </Link>*/}
-            {/*  <Link*/}
-            {/*    href="/iphone-se"*/}
-            {/*    className="block text-white/80 hover:text-white hover:underline"*/}
-            {/*  >*/}
-            {/*    iPhone SE*/}
-            {/*  </Link>*/}
-            {/*  <Link*/}
-            {/*    href="/airbnb-ai"*/}
-            {/*    className="block text-white/80 hover:text-white hover:underline"*/}
-            {/*  >*/}
-            {/*    Airbnb AI*/}
-            {/*  </Link>*/}
-            {/*  <Link*/}
-            {/*    href="/anthropic"*/}
-            {/*    className="block text-white/80 hover:text-white hover:underline"*/}
-            {/*  >*/}
-            {/*    Anthropic*/}
-            {/*  </Link>*/}
-            {/*  <Link*/}
-            {/*    href="/tech-layoffs"*/}
-            {/*    className="block text-white/80 hover:text-white hover:underline"*/}
-            {/*  >*/}
-            {/*    Tech Layoffs*/}
-            {/*  </Link>*/}
-            {/*  <Link*/}
-            {/*    href="/chatgpt"*/}
-            {/*    className="block text-white/80 hover:text-white hover:underline"*/}
-            {/*  >*/}
-            {/*    ChatGPT*/}
-            {/*  </Link>*/}
-            {/*</div>*/}
           </div>
         </div>
 
