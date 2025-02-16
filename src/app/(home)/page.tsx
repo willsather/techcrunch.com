@@ -4,6 +4,8 @@ import TitleSection from "@/app/(home)/title";
 import UpcomingEvents from "@/app/(home)/upcoming-events";
 import VenturePostsSection from "@/app/(home)/venture-posts";
 
+export const dynamic = "force-static";
+
 /*
  * DEMO: Pages
  *
@@ -13,7 +15,7 @@ import VenturePostsSection from "@/app/(home)/venture-posts";
  * All routes are specified and determined via the
  * file path under `/app`
  */
-export default async function BlogPage() {
+export default async function HomePage() {
   return (
     <div className="min-h-screen bg-white">
       <TitleSection />
@@ -23,11 +25,11 @@ export default async function BlogPage() {
       {/* Main Content */}
       <main>
         <LatestPostsSection />
+
+        <VenturePostsSection />
+
+        <UpcomingEvents />
       </main>
-
-      <VenturePostsSection />
-
-      <UpcomingEvents />
     </div>
   );
 }

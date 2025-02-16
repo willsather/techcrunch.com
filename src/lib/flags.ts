@@ -6,3 +6,10 @@ export const upcomingEventsFlag = flag<boolean>({
     return Math.random() > 0.5;
   },
 });
+
+export const latestSuspenseFlag = flag<boolean>({
+  key: "latest-suspense-flag",
+  decide() {
+    return false;
+  },
+});
