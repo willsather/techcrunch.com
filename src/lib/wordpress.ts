@@ -150,7 +150,7 @@ export async function fetchCategory(id: number): Promise<string | null> {
   );
   const wpCategories = WPCategorySchema.array().parse(await response.json());
 
-  return wpCategories.length > 0 ? wpCategories[0].name : null;
+  return wpCategories.length > 0 ? he.decode(wpCategories[0].name) : null;
 }
 
 async function getCategoryId(category: string): Promise<number | null> {
