@@ -1,7 +1,10 @@
-import PopularPosts from "@/app/(components)/popular-posts";
-import { PostListItem } from "@/app/(components)/post-list-item";
-import { getPosts } from "@/lib/blog";
 import type { Metadata } from "next";
+import { Suspense } from "react";
+
+import PopularPostsSkeleton from "@/app/(components)/(skeletons)/popular-posts-skeleton";
+import PostListSkeleton from "@/app/(components)/(skeletons)/post-list-skeleton";
+import PopularPosts from "@/app/(components)/popular-posts";
+import AIPostList from "@/app/ai/ai-post-list";
 
 export const metadata: Metadata = {
   title: "AI",
@@ -14,9 +17,23 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function AIPage() {
-  const posts = await getPosts({ category: "AI" });
+/*
+ * DEMO: Partial Pre-Rendering
+ *
+ * Automatically render static components immediately
+ * while dynamic components load.
+ *
+ * This is incredibly helpful when needing to load
+ * almost an entire page even though only a small piece
+ * of the page is dynamic (think of a dashboard loading
+ * tons of data, can still load the nav/header/skeletons)
+ */
+export const experimental_ppr = true;
 
+// DEMO: this is just to show PPR
+export const dynamic = "force-dynamic";
+
+export default async function AIPage() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div>
@@ -35,16 +52,15 @@ export default async function AIPage() {
       </div>
 
       <div className="grid gap-8 lg:grid-cols-12">
-        <PopularPosts />
+        {/* Popular Posts Sidebar */}
+        <Suspense fallback={<PopularPostsSkeleton />}>
+          <PopularPosts />
+        </Suspense>
 
         {/* Main Content */}
-        <div className="order-2 md:order-1 lg:col-span-8">
-          <div>
-            {posts.map((post) => (
-              <PostListItem key={post.id} post={post} />
-            ))}
-          </div>
-        </div>
+        <Suspense fallback={<PostListSkeleton />}>
+          <AIPostList />
+        </Suspense>
       </div>
     </div>
   );
