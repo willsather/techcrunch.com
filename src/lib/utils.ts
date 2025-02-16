@@ -6,7 +6,11 @@ export function cn(...inputs: ClassValue[]): string {
 }
 
 export function formatTimeSince(date: Date): string {
-  const totalSeconds = Math.floor((Date.now() - date.getTime()) / 1000);
+  const totalSeconds = Math.floor((Date.now() - date.getTime()) / 1000) - 10800; // timezone offset
+
+  if (totalSeconds < 0) {
+    return "0 seconds ago";
+  }
 
   if (totalSeconds < 60) {
     return `${totalSeconds} seconds ago`;
@@ -25,5 +29,6 @@ export function formatTimeSince(date: Date): string {
   }
 
   const totalDays = Math.floor(totalHours / 24);
-  return `${totalDays} days ago`;
+
+  return totalDays === 1 ? "1 day ago" : `${totalDays} days ago`;
 }
