@@ -72,7 +72,7 @@ export async function fetchPosts(options?: {
   }
 
   const response = await fetch(url, {
-    cache: "default",
+    cache: "force-cache",
     next: { tags: ["posts"] },
   });
 
@@ -112,7 +112,7 @@ export async function fetchPosts(options?: {
 
 export async function fetchPost(slug: string): Promise<Post | null> {
   const response = await fetch(`${BASE_URL}/wp-json/wp/v2/posts?slug=${slug}`, {
-    cache: "default",
+    cache: "force-cache",
     next: { tags: ["posts"] },
   });
 
