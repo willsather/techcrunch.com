@@ -26,14 +26,57 @@ performance and rendering strategies.
 
 #### Next.js Rendering Strategies
 
-○ Static (`/startups`, `/apps`/, `/venture`, etc)
+○ (Static) (`/startups`, `/apps`/, `/venture`, etc)
   * Always pre-rendered during build
 
-ƒ Dynamic (`/latest`)
+ƒ (Dynamic) (`/latest`)
   * Always server-rendered on request
 
-● SSG (`/posts/[slug]`)
+● (SSG) (`/posts/[slug]`)
   * Either pre-rendered during build **_OR_** rendered on request
+
+```text
+> next build
+
+   ▲ Next.js 15.2.0-canary.62
+   - Environments: .env.local
+   - Experiments (use with caution):
+     · ppr
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+ ✓ Linting and checking validity of types    
+ ✓ Collecting page data    
+ ✓ Generating static pages (61/61)
+ ✓ Collecting build traces    
+ ✓ Finalizing page optimization    
+
+Route (app)                                                                      Size     First Load JS
+┌ ○ /                                                                            184 B           123 kB
+├ ○ /_not-found                                                                  142 B           114 kB
+├ ƒ /.well-known/vercel/flags                                                    142 B           114 kB
+├ ƒ /ai                                                                          183 B           118 kB
+├ ○ /apps                                                                        183 B           118 kB
+├ ƒ /feed                                                                        142 B           114 kB
+├ ƒ /latest                                                                      183 B           118 kB
+├ ● /posts/[slug]                                                                183 B           123 kB
+├   ├ /posts/broadcom-tsmc-reportedly-exploring-deals-that-would-split-up-intel
+├   ├ /posts/youtube-tv-reaches-new-deal-to-keep-paramount-content
+├   ├ /posts/openai-tries-to-uncensor-chatgpt
+├   └ [+47 more paths]
+├ ○ /profile                                                                     1.04 kB         125 kB
+├ ○ /startups                                                                    183 B           118 kB
+└ ○ /venture                                                                     183 B           118 kB
++ First Load JS shared by all                                                    114 kB
+  ├ chunks/3ff3c32c-e43feb8c5e7d998b.js                                          56.9 kB
+  ├ chunks/574-0f043d7062aa5ae1.js                                               55.4 kB
+  └ other shared chunks (total)                                                  1.91 kB
+
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+```
 
     
 #### Vercel Differentiators
@@ -47,9 +90,11 @@ performance and rendering strategies.
 #### Development/Deployment Differences from Other Platforms/Approaches
 
 ##### Development
-`create-react-app`: Client Side Rendering (_also deprecated_)
-`remix`: Bigger ecosystem/community, platform/framework integrations
-`astro`: Full server Side Rendering support, handle complex web applications
+* `create-react-app`: Client Side Rendering (_also deprecated_)
+
+* `remix`: Bigger ecosystem/community, platform/framework integrations
+
+* `astro`: Full server Side Rendering support, handle complex web applications
 
 ##### Deployment
 
