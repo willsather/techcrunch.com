@@ -2,7 +2,7 @@ import { PostListItem } from "@/app/(components)/post-list-item";
 import { getPosts } from "@/lib/blog";
 
 export default async function VenturePostList() {
-  const posts = await getPosts({ category: "venture" });
+  const posts = await getPosts({ category: "Venture" });
 
   return (
     <div className="order-2 md:order-1 lg:col-span-8">

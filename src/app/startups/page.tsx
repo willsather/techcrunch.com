@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import PopularPostsSkeleton from "@/app/(components)/(skeletons)/popular-posts-skeleton";
 import PostListSkeleton from "@/app/(components)/(skeletons)/post-list-skeleton";
 import PopularPosts from "@/app/(components)/popular-posts";
-import LatestPostList from "@/app/latest/latest-post-list";
+import StartupsPostList from "@/app/startups/startups-post-list";
 
 export const metadata: Metadata = {
   title: "Startups",
@@ -42,7 +42,7 @@ export default async function StartupsPage() {
 
         {/* Main Content */}
         <Suspense fallback={<PostListSkeleton />}>
-          <LatestPostList />
+          <StartupsPostList />
         </Suspense>
       </div>
     </div>

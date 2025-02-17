@@ -2,7 +2,7 @@ import { PostListItem } from "@/app/(components)/post-list-item";
 import { getPosts } from "@/lib/blog";
 
 export default async function AppsPostList() {
-  const posts = await getPosts({ category: "apps" });
+  const posts = await getPosts({ category: "Apps" });
 
   return (
     <div className="order-2 md:order-1 lg:col-span-8">
