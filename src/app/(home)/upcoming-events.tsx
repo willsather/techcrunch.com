@@ -2,13 +2,15 @@ import Link from "next/link";
 
 import { ArrowIcon } from "@/icons/arrow-icon";
 
-interface EventProps {
+function Event({
+  title,
+  location,
+  date,
+}: {
   title: string;
   location: string;
   date: string;
-}
-
-function Event({ title, location, date }: EventProps) {
+}) {
   return (
     <div className="flex flex-col space-y-2 md:flex-row md:gap-12">
       <div>

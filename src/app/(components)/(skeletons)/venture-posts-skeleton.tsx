@@ -1,5 +1,6 @@
-import { ArrowIcon } from "@/icons/arrow-icon";
 import Link from "next/link";
+
+import { ArrowIcon } from "@/icons/arrow-icon";
 
 export default function VenturePostsSkeleton() {
   return (

@@ -1,8 +1,9 @@
+import Link from "next/link";
+
 import PostCard from "@/app/(components)/post-card";
 import { PostListItem } from "@/app/(components)/post-list-item";
 import { ArrowIcon } from "@/icons/arrow-icon";
 import { getPosts } from "@/lib/blog";
-import Link from "next/link";
 
 export default async function VenturePostsSection() {
   const posts = await getPosts({ category: "Venture" });

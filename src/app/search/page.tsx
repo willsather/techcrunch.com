@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 
-import PopularPostsSkeleton from "@/app/(components)/(skeletons)/popular-posts-skeleton";
 import PopularPosts from "@/app/(components)/popular-posts";
 import { PostListItem } from "@/app/(components)/post-list-item";
 import { getPosts } from "@/lib/blog";

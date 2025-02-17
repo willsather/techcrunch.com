@@ -1,5 +1,6 @@
-import { TrendUpIcon } from "@/icons/trend-up-icon";
 import React from "react";
+
+import { TrendUpIcon } from "@/icons/trend-up-icon";
 
 export default function PopularPostsSkeleton() {
   return (

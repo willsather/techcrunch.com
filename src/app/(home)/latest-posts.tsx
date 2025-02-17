@@ -1,11 +1,11 @@
+import Link from "next/link";
+
 import PopularPosts from "@/app/(components)/popular-posts";
 import { PostListItem } from "@/app/(components)/post-list-item";
 import { ArrowIcon } from "@/icons/arrow-icon";
 import { getPosts } from "@/lib/blog";
-import Link from "next/link";
 
 export default async function LatestPostsSection() {
-  const popular = await getPosts({ category: "popular" });
   const posts = await getPosts({ category: "latest" });
 
   return (
@@ -27,28 +27,10 @@ export default async function LatestPostsSection() {
         {/* Sidebar */}
         <div className="order-1 space-y-6 md:order-2 lg:col-span-4">
           <PopularPosts />
-
-          {/*<div className="rounded-xl border bg-gray-50 p-6">*/}
-          {/*  <h2 className="mb-4 font-bold text-tc-green text-xl">*/}
-          {/*    Top Headlines*/}
-          {/*  </h2>*/}
-          {/*  <div className="space-y-4">*/}
-          {/*    {popular.map((post) => (*/}
-          {/*      <Link*/}
-          {/*        key={post.id}*/}
-          {/*        href={`/posts/${post.slug}`}*/}
-          {/*        className="block font-medium text-sm hover:text-tc-green"*/}
-          {/*      >*/}
-          {/*        <div>{post.title}</div>*/}
-          {/*      </Link>*/}
-          {/*    ))}*/}
-          {/*  </div>*/}
-          {/*</div>*/}
         </div>
 
-        {/* Articles Grid */}
+        {/* Articles List */}
         <div className="order-2 md:order-1 lg:col-span-8">
-          {/* Articles List */}
           <div>
             {posts.map((post) => (
               <PostListItem key={post.id} post={post} />

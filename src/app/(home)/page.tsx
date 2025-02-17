@@ -17,10 +17,6 @@ export const dynamic = "force-static";
  * file path under `/app`
  */
 export default async function HomePage() {
-  // while (true) {
-  //   console.log("Stuck in an infinite loop...");
-  // }
-
   return (
     <div className="min-h-screen bg-white">
       <TitleSection />
