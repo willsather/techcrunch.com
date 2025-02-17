@@ -61,7 +61,7 @@ export async function PostListItem({
             <div className="flex items-start gap-2">
               {showInBrief && post.metadata?.isBrief ? (
                 <div className="bg-tc-green p-1">
-                  <InBriefIcon className="size-4" />
+                  <InBriefIcon className="size-4 fill-white" />
                 </div>
               ) : null}
               <h2 className="mb-2 font-bold text-lg leading-tight tracking-tight hover:underline">
