@@ -1,7 +1,10 @@
-import PopularPosts from "@/app/(components)/popular-posts";
-import { PostListItem } from "@/app/(components)/post-list-item";
-import { getPosts } from "@/lib/blog";
 import type { Metadata } from "next";
+import { Suspense } from "react";
+
+import PopularPostsSkeleton from "@/app/(components)/(skeletons)/popular-posts-skeleton";
+import PostListSkeleton from "@/app/(components)/(skeletons)/post-list-skeleton";
+import PopularPosts from "@/app/(components)/popular-posts";
+import LatestPostList from "@/app/latest/latest-post-list";
 
 export const metadata: Metadata = {
   title: "Apps",
@@ -14,9 +17,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function AppsPage() {
-  const posts = await getPosts({ category: "Apps" });
-
+export default async function StartupsPage() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div>
@@ -35,16 +36,15 @@ export default async function AppsPage() {
       </div>
 
       <div className="grid gap-8 lg:grid-cols-12">
-        <PopularPosts />
+        {/* Popular Posts Sidebar */}
+        <Suspense fallback={<PopularPostsSkeleton />}>
+          <PopularPosts />
+        </Suspense>
 
         {/* Main Content */}
-        <div className="order-2 md:order-1 lg:col-span-8">
-          <div>
-            {posts.map((post) => (
-              <PostListItem key={post.id} post={post} />
-            ))}
-          </div>
-        </div>
+        <Suspense fallback={<PostListSkeleton />}>
+          <LatestPostList />
+        </Suspense>
       </div>
     </div>
   );

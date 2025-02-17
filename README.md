@@ -21,6 +21,7 @@ performance and rendering strategies.
 
 * **Framework**: Next.js App Router
 * **Platform**: Vercel
+* **Dependency**: `pnpm`
 * **UI**: Radix, shadcn/ui, Sonner
 * **Other**: React Hook Form, Zod
 
