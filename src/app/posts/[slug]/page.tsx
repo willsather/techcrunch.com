@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -21,6 +22,40 @@ export async function generateStaticParams() {
   return posts.map((post) => ({
     slug: post.slug,
   }));
+}
+
+/*
+ * DEMO: Generate Metadata
+ *
+ * At build time, generate the post specific metadata
+ * even when using a dynamic route.  This allows for
+ * each dynamic route to have metadata and opengraph
+ * images, text, etc.
+ */
+export async function generateMetadata(props: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const params = await props.params;
+  const post = await getPost(params.slug);
+
+  if (!post) return notFound();
+
+  return {
+    title: post.title,
+    description: post.excerpt,
+    openGraph: post.image
+      ? {
+          images: [
+            {
+              url: post.image,
+              width: 1200,
+              height: 630,
+              alt: post.title,
+            },
+          ],
+        }
+      : null,
+  };
 }
 
 export default async function BlogPost({
