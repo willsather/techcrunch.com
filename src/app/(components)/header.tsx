@@ -85,7 +85,9 @@ export default function Header() {
           <div className="flex h-14 items-center justify-between gap-4">
             {/* Left side with logo (visible when scrolled or not homepage) */}
             <div className="flex items-center gap-6">
-              <TechCrunchLogo className="size-8 fill-white md:hidden" />
+              <Link href="/" className="flex items-center gap-2">
+                <TechCrunchLogo className="size-8 fill-white md:hidden" />
+              </Link>
 
               <Link
                 href="/"
