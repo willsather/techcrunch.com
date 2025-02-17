@@ -79,9 +79,11 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full">
+      {/* Top Navigation - Always visible */}
       <div className="bg-tc-black shadow-sm">
         <div className="container mx-auto px-4">
           <div className="flex h-14 items-center justify-between gap-4">
+            {/* Left side with logo (visible when scrolled or not homepage) */}
             <div className="flex items-center gap-6">
               <TechCrunchLogo className="size-8 fill-white md:hidden" />
 
@@ -98,6 +100,7 @@ export default function Header() {
                 TechCrunch
               </Link>
 
+              {/* Desktop Navigation Links */}
               <nav className="hidden items-center space-x-6 md:flex">
                 {mainNavItems.map((item) => (
                   <Link
@@ -111,6 +114,7 @@ export default function Header() {
               </nav>
             </div>
 
+            {/* Right side */}
             <div className="flex items-center space-x-4">
               {isSearchOpen ? (
                 <div className="flex items-center space-x-2 border-gray-400 border-b">
@@ -165,6 +169,59 @@ export default function Header() {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Mobile Menu Overlay */}
+      <div
+        className={cn(
+          "fixed inset-0 z-40 bg-black/50 backdrop-blur-sm transition-opacity duration-300 md:hidden",
+          isMobileMenuOpen ? "opacity-100" : "pointer-events-none opacity-0",
+        )}
+        onClick={toggleMobileMenu}
+        onKeyDown={toggleMobileMenu}
+        onKeyUp={toggleMobileMenu}
+        aria-hidden="true"
+      />
+
+      {/* Mobile Menu Panel */}
+      <div
+        className={cn(
+          "fixed inset-y-0 left-0 z-50 w-[300px] transform bg-tc-black transition-transform duration-300 ease-in-out md:hidden",
+          isMobileMenuOpen ? "translate-x-0" : "-translate-x-full",
+        )}
+      >
+        <div className="flex h-14 items-center justify-between border-white/10 border-b px-4">
+          <Link
+            href="/"
+            className="flex items-center gap-2"
+            onClick={toggleMobileMenu}
+          >
+            <TechCrunchLogo className="size-8 fill-white" />
+          </Link>
+          <button
+            type="button"
+            onClick={toggleMobileMenu}
+            className="rounded-full p-2 text-white transition-colors hover:bg-white/10"
+            aria-label="Close menu"
+          >
+            <CloseIcon className="size-5" />
+          </button>
+        </div>
+
+        <nav className="p-4">
+          <div className="space-y-1">
+            {mainNavItems.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="block rounded-lg px-4 py-2 font-bold text-gray-300 text-lg transition-colors hover:bg-white/10 hover:text-white"
+                onClick={toggleMobileMenu}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        </nav>
       </div>
     </header>
   );
