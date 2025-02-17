@@ -111,12 +111,12 @@ export default function Header() {
                 <MenuIcon className="size-5" />
               </button>
 
-              <a
-                href="/dashboard"
-                className="hidden text-gray-300 text-sm hover:text-white md:inline-flex"
-              >
-                Dashboard
-              </a>
+              {/*<a*/}
+              {/*  href="/dashboard"*/}
+              {/*  className="hidden text-gray-300 text-sm hover:text-white md:inline-flex"*/}
+              {/*>*/}
+              {/*  Dashboard*/}
+              {/*</a>*/}
             </div>
           </div>
         </div>
@@ -174,13 +174,13 @@ export default function Header() {
           </div>
 
           <div className="mt-8 border-white/10 border-t pt-4">
-            <Link
-              href="/dashboard"
-              className="block rounded-lg px-4 py-2 font-bold text-gray-300 text-lg transition-colors hover:bg-white/10 hover:text-white"
-              onClick={toggleMobileMenu}
-            >
-              Dashboard
-            </Link>
+            {/*<Link*/}
+            {/*  href="/dashboard"*/}
+            {/*  className="block rounded-lg px-4 py-2 font-bold text-gray-300 text-lg transition-colors hover:bg-white/10 hover:text-white"*/}
+            {/*  onClick={toggleMobileMenu}*/}
+            {/*>*/}
+            {/*  Dashboard*/}
+            {/*</Link>*/}
           </div>
         </nav>
       </div>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 
+import Refresh from "@/app/(components)/(refresh)/refresh";
 import PopularPostsSkeleton from "@/app/(components)/(skeletons)/popular-posts-skeleton";
 import PostListSkeleton from "@/app/(components)/(skeletons)/post-list-skeleton";
 import PopularPosts from "@/app/(components)/popular-posts";
@@ -61,6 +62,8 @@ export default async function LatestPage() {
           <h1 className="my-2 text-6xl text-tc-green md:text-8xl">
             Latest News
           </h1>
+
+          <Refresh />
         </div>
 
         <div className="my-4 border-tc-green border-t-8" />
