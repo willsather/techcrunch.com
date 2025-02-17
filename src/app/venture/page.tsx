@@ -17,6 +17,8 @@ export const metadata: Metadata = {
   },
 };
 
+export const dynamic = "force-static";
+
 export default async function VenturePage() {
   return (
     <div className="container mx-auto px-4 py-8">
