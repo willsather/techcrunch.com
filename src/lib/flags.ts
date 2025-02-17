@@ -8,3 +8,12 @@ export const searchResultsFlag = flag<boolean>({
     return false;
   },
 });
+
+export const inBriefFlag = flag<boolean>({
+  key: "in-brief-flag",
+  defaultValue: true,
+  description: "enable displaying in brief icon for a post",
+  decide() {
+    return true;
+  },
+});

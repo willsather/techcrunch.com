@@ -1,13 +1,19 @@
-import type { Post } from "@/lib/blog";
-import { formatTimeSince } from "@/lib/utils";
 import Link from "next/link";
+
+import { InBriefIcon } from "@/icons/in-brief-icon";
+import type { Post } from "@/lib/blog";
+import { inBriefFlag } from "@/lib/flags";
+import { formatTimeSince } from "@/lib/utils";
 
 type PostListItemProps = {
   post: Post;
-  theme?: "default" | "alternate"; // You can extend this if you want more themes
+  theme?: "default" | "alternate";
 };
 
-export function PostListItem({ post, theme = "default" }: PostListItemProps) {
+export async function PostListItem({
+  post,
+  theme = "default",
+}: PostListItemProps) {
   const defaultStyles = {
     textColor: "text-tc-green",
     borderColor: "border-gray-300",
@@ -22,6 +28,8 @@ export function PostListItem({ post, theme = "default" }: PostListItemProps) {
 
   const styles = theme === "alternate" ? alternateStyles : defaultStyles;
 
+  const showInBrief = await inBriefFlag();
+
   return (
     <article
       className={`group flex gap-6 border-b py-6 first:pt-0 ${styles.borderColor}`}
@@ -29,7 +37,7 @@ export function PostListItem({ post, theme = "default" }: PostListItemProps) {
       {/* Thumbnail */}
       <Link
         href={`/posts/${post.slug}`}
-        className="relative block h-[154px] w-[154px] shrink-0 overflow-hidden bg-gray-500"
+        className="relative block aspect-[563/375] w-[150px] shrink-0 overflow-hidden bg-gray-500"
       >
         {post.image !== "" ? (
           <img
@@ -44,16 +52,24 @@ export function PostListItem({ post, theme = "default" }: PostListItemProps) {
 
       {/* Content */}
       <div className="flex flex-col">
-        <Link href={`/posts/${post.slug}`}>
+        <div>
           <div
             className={`mb-2 inline-block font-medium text-xs ${styles.textColor}`}
           >
             {post.categories?.[0]?.toUpperCase()}
           </div>
-          <h2 className="mb-2 font-bold text-[22px] leading-tight tracking-tight hover:underline">
-            {post.title}
-          </h2>
-        </Link>
+
+          <div className="flex items-start gap-2">
+            {showInBrief && post.metadata?.isBrief ? (
+              <div className="bg-tc-green p-1">
+                <InBriefIcon className="size-4" />
+              </div>
+            ) : null}
+            <h2 className="mb-2 font-bold text-lg leading-tight tracking-tight hover:underline">
+              {post.title}
+            </h2>
+          </div>
+        </div>
 
         <div className="mt-auto flex flex-col items-start gap-2 font-medium text-gray-500 text-sm md:flex-row md:items-center">
           <span>{post.author}</span>
