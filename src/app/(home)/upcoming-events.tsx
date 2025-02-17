@@ -14,7 +14,7 @@ function Event({
   return (
     <div className="flex flex-col space-y-2 md:flex-row md:gap-12">
       <div>
-        <h3 className="font-bold text-2xl text-tc-black">{title}</h3>
+        <h3 className="font-bold text-tc-black text-xl md:text-2xl">{title}</h3>
         <p className="text-tc-black">
           {location} | {date}
         </p>
@@ -66,12 +66,12 @@ export default async function UpcomingEvents() {
     <section className="container mx-auto px-4 py-8">
       <div className="mb-8 flex flex-col">
         <div className="mb-8 flex flex-col md:flex-row md:items-center md:gap-8">
-          <h1 className="font-extrabold text-7xl text-tc-green md:m-0">
+          <h1 className="font-extrabold text-tc-green md:m-0 md:text-7xl">
             Upcoming Events
           </h1>
           <Link
             href="/latest"
-            className="inline-flex items-center gap-2 rounded-full border-2 border-tc-green fill-tc-black px-4 py-4 font-medium text-sm hover:bg-tc-black hover:fill-white hover:text-white"
+            className="inline-flex max-w-xs items-center gap-2 rounded-full border-2 border-tc-green fill-tc-black px-4 py-4 font-medium text-sm hover:bg-tc-black hover:fill-white hover:text-white"
           >
             See More
             <ArrowIcon className="size-4 rotate-45" />

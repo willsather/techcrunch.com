@@ -16,7 +16,7 @@ export default async function LatestPostsSection() {
         </h1>
         <Link
           href="/latest"
-          className="inline-flex items-center gap-2 rounded-full border-2 border-tc-green fill-tc-black px-4 py-4 font-medium text-sm hover:bg-tc-black hover:fill-white hover:text-white"
+          className="inline-flex max-w-xs items-center gap-2 rounded-full border-2 border-tc-green fill-tc-black px-4 py-4 font-medium text-sm hover:bg-tc-black hover:fill-white hover:text-white"
         >
           See More
           <ArrowIcon className="size-4 rotate-45" />

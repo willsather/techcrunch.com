@@ -78,15 +78,20 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full">
+    <header className="sticky top-0 z-50 w-full bg-tc-black">
       {/* Top Navigation - Always visible */}
-      <div className="bg-tc-black shadow-sm">
+      <div className=" shadow-sm">
         <div className="container mx-auto px-4">
           <div className="flex h-14 items-center justify-between gap-4">
             {/* Left side with logo (visible when scrolled or not homepage) */}
-            <div className="flex items-center gap-6">
+            <div className="flex items-center">
               <Link href="/" className="flex items-center gap-2">
-                <TechCrunchLogo className="size-8 fill-white md:hidden" />
+                <TechCrunchLogo
+                  className={cn("fill-white md:hidden", {
+                    "size-4": isSearchOpen,
+                    "size-8": !isSearchOpen,
+                  })}
+                />
               </Link>
 
               <Link
@@ -103,70 +108,77 @@ export default function Header() {
               </Link>
 
               {/* Desktop Navigation Links */}
-              <nav className="hidden items-center space-x-6 md:flex">
-                {mainNavItems.map((item) => (
-                  <Link
-                    key={item.label}
-                    href={item.href}
-                    className="font-bold text-gray-300 transition-colors hover:text-tc-green-100 hover:underline"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </nav>
+              {!isSearchOpen ? (
+                <nav className="hidden items-center space-x-6 md:flex">
+                  {mainNavItems.map((item) => (
+                    <Link
+                      key={item.label}
+                      href={item.href}
+                      className="font-bold text-white transition-colors hover:text-tc-green-100 hover:underline"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </nav>
+              ) : null}
             </div>
 
-            {/* Right side */}
-            <div className="flex items-center space-x-4">
-              {isSearchOpen ? (
-                <div className="flex items-center space-x-2 border-gray-400 border-b">
-                  <input
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    onKeyDown={(e) => e.key === "Enter" && handleSearchSubmit()}
-                    placeholder="Search..."
-                    className="bg-transparent px-2 py-1 text-white outline-none"
-                    disabled={isLoading}
-                  />
+            {isSearchOpen ? (
+              <div className="flex items-center justify-between border-white border-b md:w-1/2">
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && handleSearchSubmit()}
+                  placeholder="Search..."
+                  className="bg-transparent text-white outline-none"
+                  disabled={isLoading}
+                />
+
+                {!isLoading ? (
                   <button
                     type="button"
                     onClick={handleSearchSubmit}
-                    className="text-gray-300 hover:text-white"
+                    className="text-white text-xs"
                     disabled={isLoading}
                   >
-                    {isLoading ? (
-                      <SpinnerIcon className="size-4" />
-                    ) : (
-                      <SearchIcon className="size-4" />
-                    )}
+                    Submit
                   </button>
-                  <button
-                    type="button"
-                    onClick={handleSearchToggle}
-                    className="text-gray-300 hover:text-white"
-                    disabled={isLoading}
-                  >
-                    <CloseIcon className="size-4" />
-                  </button>
-                </div>
+                ) : (
+                  <SpinnerIcon className="size-4" />
+                )}
+              </div>
+            ) : null}
+
+            {/* Right side */}
+            <div className="flex items-center">
+              {!isSearchOpen ? (
+                <button
+                  type="button"
+                  onClick={handleSearchToggle}
+                  className="hover:p- rounded-3xl p-3 text-white hover:border hover:border-white hover:text-white"
+                >
+                  <SearchIcon className="size-4" />
+                </button>
               ) : (
                 <button
                   type="button"
                   onClick={handleSearchToggle}
-                  className="text-gray-300 hover:text-white"
+                  disabled={isLoading}
+                  className="hover:p- rounded-3xl border border-tc-green p-3 text-white hover:border hover:border-white hover:bg-white hover:text-black"
                 >
-                  <SearchIcon className="size-4" />
+                  <CloseIcon className="size-4" />
                 </button>
               )}
 
               <button
                 type="button"
-                className="text-white md:hidden"
                 onClick={toggleMobileMenu}
+                disabled={isLoading}
+                className="hover:p- rounded-3xl p-3 text-white hover:border hover:border-white hover:text-white md:hidden"
                 aria-label="Toggle menu"
               >
-                <MenuIcon className="size-5" />
+                <MenuIcon className="size-4" />
               </button>
             </div>
           </div>
