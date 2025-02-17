@@ -112,10 +112,10 @@ export default function Header() {
               </button>
 
               <a
-                href="/profile"
+                href="/dashboard"
                 className="hidden text-gray-300 text-sm hover:text-white md:inline-flex"
               >
-                Sign In
+                Dashboard
               </a>
             </div>
           </div>
@@ -175,11 +175,11 @@ export default function Header() {
 
           <div className="mt-8 border-white/10 border-t pt-4">
             <Link
-              href="/profile"
+              href="/dashboard"
               className="block rounded-lg px-4 py-2 font-bold text-gray-300 text-lg transition-colors hover:bg-white/10 hover:text-white"
               onClick={toggleMobileMenu}
             >
-              Sign In
+              Dashboard
             </Link>
           </div>
         </nav>
