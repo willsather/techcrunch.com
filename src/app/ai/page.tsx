@@ -17,22 +17,6 @@ export const metadata: Metadata = {
   },
 };
 
-/*
- * DEMO: Partial Pre-Rendering
- *
- * Automatically render static components immediately
- * while dynamic components load.
- *
- * This is incredibly helpful when needing to load
- * almost an entire page even though only a small piece
- * of the page is dynamic (think of a dashboard loading
- * tons of data, can still load the nav/header/skeletons)
- */
-export const experimental_ppr = true;
-
-// DEMO: this is just to show PPR
-export const dynamic = "force-dynamic";
-
 export default async function AIPage() {
   return (
     <div className="container mx-auto px-4 py-8">
@@ -44,7 +28,7 @@ export default async function AIPage() {
             the companies building them, and the ethical issues AI raises today.
             This encompasses generative AI, including large language models,
             text-to-image and text-to-video models; speech recognition and
-            generation; and predictive analytics.
+            generation; and predictive analyticsssssssss.
           </p>
         </div>
 
