@@ -1,3 +1,4 @@
+import Separator from "@/app/(components)/separator";
 import Hero from "@/app/(home)/hero";
 import LatestPostsSection from "@/app/(home)/latest-posts";
 import TitleSection from "@/app/(home)/title";
@@ -25,6 +26,8 @@ export default async function HomePage() {
       <TitleSection />
 
       <Hero />
+
+      <Separator />
 
       {/* Main Content */}
       <main>
