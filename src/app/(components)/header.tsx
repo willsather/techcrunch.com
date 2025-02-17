@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { CloseIcon } from "@/icons/close-icon";
 import { TechCrunchLogo } from "@/icons/logo";
@@ -22,6 +22,8 @@ export default function Header() {
   const pathname = usePathname();
   const router = useRouter();
   const isHomePage = pathname === "/";
+
+  const searchInputRef = useRef<HTMLInputElement | null>(null);
 
   const [showLogo, setShowLogo] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -77,6 +79,13 @@ export default function Header() {
     }, 500);
   };
 
+  // set user focus to search
+  useEffect(() => {
+    if (isSearchOpen) {
+      searchInputRef.current?.focus();
+    }
+  }, [isSearchOpen]);
+
   return (
     <header className="sticky top-0 z-50 w-full bg-tc-black">
       {/* Top Navigation - Always visible */}
@@ -127,6 +136,7 @@ export default function Header() {
               <div className="flex items-center justify-between border-white border-b md:w-1/2">
                 <input
                   type="text"
+                  ref={searchInputRef}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleSearchSubmit()}
