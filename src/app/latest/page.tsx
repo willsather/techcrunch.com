@@ -6,7 +6,6 @@ import PopularPostsSkeleton from "@/app/(components)/(skeletons)/popular-posts-s
 import PostListSkeleton from "@/app/(components)/(skeletons)/post-list-skeleton";
 import PopularPosts from "@/app/(components)/popular-posts";
 import LatestPostList from "@/app/latest/latest-post-list";
-import { latestSuspenseFlag } from "@/lib/flags";
 
 export const metadata: Metadata = {
   title: "Latest News",
@@ -27,34 +26,7 @@ export const metadata: Metadata = {
  * tons of data, can still load the nav/header/skeletons)
  */
 
-// DEMO: this is just to show PPR
-export const dynamic = "force-dynamic";
-
 export default async function LatestPage() {
-  const isEnabled = await latestSuspenseFlag();
-
-  if (!isEnabled) {
-    return (
-      <div className="container mx-auto px-4 py-8">
-        <div>
-          <div className="my-4 flex flex-col md:my-8 md:flex-row md:justify-between">
-            <h1 className="my-2 text-6xl text-tc-green md:text-8xl">
-              Latest News
-            </h1>
-          </div>
-
-          <div className="my-4 border-tc-green border-t-8" />
-        </div>
-
-        <div className="grid gap-8 lg:grid-cols-12">
-          <PopularPosts />
-
-          <LatestPostList />
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="container mx-auto px-4 py-8">
       <div>

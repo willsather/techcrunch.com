@@ -28,8 +28,13 @@ export const PostSchema = z.object({
 export type Post = z.infer<typeof PostSchema>;
 
 export async function getPosts(options?: {
-  category: "latest" | "popular" | string;
+  name?: string;
+  category?: "latest" | "popular" | string;
 }): Promise<Post[]> {
+  if (options?.name != null) {
+    return await fetchPosts({ name: options.name });
+  }
+
   if (options?.category === "latest") {
     const posts = await fetchPosts({ recent: true });
     return posts.slice(0, 5);

@@ -1,18 +1,9 @@
 import { flag } from "@vercel/flags/next";
 
-export const upcomingEventsFlag = flag<boolean>({
-  key: "upcoming-events-flag",
+export const searchResultsFlag = flag<boolean>({
+  key: "search-results-flag",
   defaultValue: false,
-  description: "enable upcoming events section on home page",
-  decide() {
-    return Math.random() > 0.5;
-  },
-});
-
-export const latestSuspenseFlag = flag<boolean>({
-  key: "latest-suspense-flag",
-  defaultValue: false,
-  description: "enable suspense rendering for latest news page",
+  description: "enable displaying count of search results on /search",
   decide() {
     return false;
   },

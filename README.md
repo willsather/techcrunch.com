@@ -48,35 +48,35 @@ performance and rendering strategies.
  ✓ Compiled successfully
  ✓ Linting and checking validity of types    
  ✓ Collecting page data    
- ✓ Generating static pages (61/61)
+ ✓ Generating static pages (36/36)
  ✓ Collecting build traces    
  ✓ Finalizing page optimization    
 
-Route (app)                                                                      Size     First Load JS
-┌ ○ /                                                                            184 B           123 kB
-├ ○ /_not-found                                                                  142 B           114 kB
-├ ƒ /.well-known/vercel/flags                                                    142 B           114 kB
-├ ƒ /ai                                                                          183 B           118 kB
-├ ○ /apps                                                                        183 B           118 kB
-├ ƒ /feed                                                                        142 B           114 kB
-├ ƒ /latest                                                                      183 B           118 kB
-├ ● /posts/[slug]                                                                183 B           123 kB
-├   ├ /posts/broadcom-tsmc-reportedly-exploring-deals-that-would-split-up-intel
-├   ├ /posts/youtube-tv-reaches-new-deal-to-keep-paramount-content
-├   ├ /posts/openai-tries-to-uncensor-chatgpt
-├   └ [+47 more paths]
-├ ○ /profile                                                                     1.04 kB         125 kB
-├ ○ /startups                                                                    183 B           118 kB
-└ ○ /venture                                                                     183 B           118 kB
-+ First Load JS shared by all                                                    114 kB
-  ├ chunks/3ff3c32c-e43feb8c5e7d998b.js                                          56.9 kB
-  ├ chunks/574-0f043d7062aa5ae1.js                                               55.4 kB
-  └ other shared chunks (total)                                                  1.91 kB
+Route (app)                                                                                                Size     First Load JS
+┌ ○ /                                                                                                      184 B           123 kB
+├ ○ /_not-found                                                                                            145 B           114 kB
+├ ƒ /.well-known/vercel/flags                                                                              145 B           114 kB
+├ ○ /apps                                                                                                  184 B           118 kB
+├ ƒ /feed                                                                                                  145 B           114 kB
+├ ○ /latest                                                                                                1.06 kB         119 kB
+├ ● /posts/[slug]                                                                                          183 B           123 kB
+├   ├ /posts/x-is-blocking-links-to-signal-a-secure-messaging-platform-used-by-federal-workers
+├   ├ /posts/polymath-aims-to-make-learning-math-as-enjoyable-as-roblox-with-its-educational-sandbox-game
+├   ├ /posts/what-to-know-about-tiktoks-uncertain-future-in-the-us-and-the-people-who-want-to-buy-it
+├   └ [+22 more paths]
+├ ◐ /search                                                                                                184 B           118 kB
+├ ○ /startups                                                                                              184 B           118 kB
+└ ○ /venture                                                                                               184 B           118 kB
++ First Load JS shared by all                                                                              114 kB
+  ├ chunks/3ff3c32c-e43feb8c5e7d998b.js                                                                    56.9 kB
+  ├ chunks/574-0f043d7062aa5ae1.js                                                                         55.4 kB
+  └ other shared chunks (total)                                                                            1.91 kB
 
 
-○  (Static)   prerendered as static content
-●  (SSG)      prerendered as static HTML (uses generateStaticParams)
-ƒ  (Dynamic)  server-rendered on demand
+○  (Static)             prerendered as static content
+●  (SSG)                prerendered as static HTML (uses generateStaticParams)
+◐  (Partial Prerender)  prerendered as static HTML with dynamic server-streamed content
+ƒ  (Dynamic)            server-rendered on demand
 ```
 
     

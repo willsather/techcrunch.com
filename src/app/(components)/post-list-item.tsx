@@ -31,11 +31,15 @@ export function PostListItem({ post, theme = "default" }: PostListItemProps) {
         href={`/posts/${post.slug}`}
         className="relative block h-[154px] w-[154px] shrink-0 overflow-hidden bg-gray-500"
       >
-        <img
-          src={post.image ?? "/default.png"}
-          alt={post.image}
-          className={`h-full w-full object-cover transition-transform duration-300 ${styles.hoverScale}`}
-        />
+        {post.image !== "" ? (
+          <img
+            src={post.image ?? "/default.png"}
+            alt={post.image}
+            className={`h-full w-full object-cover transition-transform duration-300 ${styles.hoverScale}`}
+          />
+        ) : (
+          <div className="h-full w-full bg-gray-500" />
+        )}
       </Link>
 
       {/* Content */}

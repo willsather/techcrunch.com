@@ -45,11 +45,16 @@ export const WPCategorySchema = z.object({
 });
 
 export async function fetchPosts(options?: {
+  name?: string;
   category?: string;
   recent?: boolean;
 }): Promise<Post[]> {
   let url = `${BASE_URL}/wp-json/wp/v2/posts`;
   const queryParams: string[] = [];
+
+  if (options?.name) {
+    queryParams.push(`search=${options.name}`);
+  }
 
   if (options?.category) {
     const categoryId = await getCategoryId(options.category);
@@ -64,7 +69,7 @@ export async function fetchPosts(options?: {
   }
 
   // get 50 posts
-  queryParams.push("per_page=50");
+  queryParams.push("per_page=25");
 
   // build query params
   if (queryParams.length > 0) {

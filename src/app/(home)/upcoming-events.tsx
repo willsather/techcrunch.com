@@ -1,7 +1,6 @@
 import Link from "next/link";
 
 import { ArrowIcon } from "@/icons/arrow-icon";
-import { upcomingEventsFlag } from "@/lib/flags";
 
 interface EventProps {
   title: string;
@@ -38,12 +37,6 @@ function Event({ title, location, date }: EventProps) {
 }
 
 export default async function UpcomingEvents() {
-  const isEnabled = await upcomingEventsFlag();
-
-  if (!isEnabled) {
-    return null;
-  }
-
   const events = [
     {
       title: "StrictlyVC San Francisco 2025",
