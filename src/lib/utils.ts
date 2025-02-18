@@ -6,7 +6,7 @@ export function cn(...inputs: ClassValue[]): string {
 }
 
 export function formatTimeSince(date: Date): string {
-  const totalSeconds = Math.floor((Date.now() - date.getTime()) / 1000) - 10800; // timezone offset
+  const totalSeconds = Math.floor((Date.now() - date.getTime()) / 1000);
 
   if (totalSeconds < 60) {
     return totalSeconds <= 1 ? "1 second ago" : `${totalSeconds} seconds ago`;

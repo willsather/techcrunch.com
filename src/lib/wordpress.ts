@@ -97,7 +97,7 @@ export async function fetchPosts(options?: {
 
       return PostSchema.parse({
         id: post.id,
-        date: post.date,
+        date: `${post.date_gmt}Z`, // use gmt for date to avoid timezone issues
         title: he.decode(post.title.rendered),
         excerpt: he.decode(post.excerpt.rendered),
         slug: post.slug,
@@ -138,12 +138,12 @@ export async function fetchPost(slug: string): Promise<Post | null> {
 
   return PostSchema.parse({
     id: wpPost.id,
+    date: `${wpPost.date_gmt}Z`, // use gmt for date to avoid timezone issues
     title: he.decode(wpPost.title.rendered),
     excerpt: he.decode(wpPost.excerpt.rendered),
     slug: wpPost.slug,
     content: he.decode(wpPost.content.rendered),
     image: wpPost.jetpack_featured_media_url,
-    date: wpPost.date,
     author: wpPost.yoast_head_json?.author,
     categories: categories,
   });
