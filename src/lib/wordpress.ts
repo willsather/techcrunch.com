@@ -152,6 +152,10 @@ export async function fetchPost(slug: string): Promise<Post | null> {
 export async function fetchCategory(id: number): Promise<string | null> {
   const response = await fetch(
     `${BASE_URL}/wp-json/wp/v2/categories?include=${id}`,
+    {
+      cache: "force-cache",
+      next: { tags: ["posts"] },
+    },
   );
   const wpCategories = WPCategorySchema.array().parse(await response.json());
 
@@ -161,6 +165,10 @@ export async function fetchCategory(id: number): Promise<string | null> {
 async function getCategoryId(category: string): Promise<number | null> {
   const response = await fetch(
     `${BASE_URL}/wp-json/wp/v2/categories?search=${category}`,
+    {
+      cache: "force-cache",
+      next: { tags: ["posts"] },
+    },
   );
   const wpCategories = WPCategorySchema.array().parse(await response.json());
 
