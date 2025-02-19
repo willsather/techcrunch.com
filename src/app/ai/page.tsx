@@ -28,7 +28,7 @@ export default async function AIPage() {
             the companies building them, and the ethical issues AI raises today.
             This encompasses generative AI, including large language models,
             text-to-image and text-to-video models; speech recognition and
-            generation; and predictive analyticsssssssss.
+            generation; and predictive analytics.
           </p>
         </div>
 
