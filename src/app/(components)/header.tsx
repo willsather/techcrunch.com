@@ -16,6 +16,7 @@ const mainNavItems = [
   { label: "Startups", href: "/startups" },
   { label: "Apps", href: "/apps" },
   { label: "Venture", href: "/venture" },
+  { label: "AI", href: "/ai" },
 ];
 
 export default function Header() {
